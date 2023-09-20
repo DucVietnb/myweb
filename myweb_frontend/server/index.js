@@ -18,7 +18,6 @@ if (subDir === '/') {
 if (logRequests) {
     console.log('The server will log all incoming request. It\'s not recommended for production use.');
 }
-
 // Serve the static files from the React app
 app.use(subDir, express.static(buildDir));
 // Handles any requests that don't match the ones above

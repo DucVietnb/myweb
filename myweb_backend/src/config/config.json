@@ -4,18 +4,19 @@
     "password": null,
     "database": "myweb_viet",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "logging": false,
+    "query": {
+      "raw" : true
+    },
+    "timezone": "+07:00"
   },
   "test": {
     "username": "root",
     "password": null,
     "database": "database_test",
     "host": "127.0.0.1",
-    "dialect": "mysql",
-    "query": {
-      "raw" : true
-    },
-    "timezone": "+07:00"
+    "dialect": "mysql"
   },
   "production": {
     "username": "root",
