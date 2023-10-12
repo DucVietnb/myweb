@@ -87,10 +87,6 @@ class HomeHeader extends Component {
         </div>
         <div className="banner__container">
           <div className="first__banner"></div>
-          <div className="second__banner">
-            <div className="first__slide"></div>
-            <div className="second__slide"></div>
-          </div>
         </div>
       </React.Fragment>
     );

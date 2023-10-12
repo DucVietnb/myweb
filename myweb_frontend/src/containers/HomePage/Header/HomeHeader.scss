@@ -156,24 +156,4 @@ html {
     background-position: center;
   }
 
-  .second__banner {
-    display: flex;
-    height: auto;
-    width: 100%;
-    padding: 0 150px;
-
-    .first__slide {
-      height: 100px;
-      width: 50%;
-      background-color: red;
-      border-radius: 10%;
-    }
-    .second__slide {
-      height: 100px;
-      width: 50%;
-      background-color: green;
-      border-radius: 10%;
-      margin: 0 10px;
-    }
-  }
 }
