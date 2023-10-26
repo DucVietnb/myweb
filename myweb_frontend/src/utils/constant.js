@@ -1,9 +1,16 @@
 export const path = {
-  HOME: "/",
+  // HOME: "/",
   HOMEPAGE: "/home",
   LOGIN: "/login",
   LOG_OUT: "/logout",
   SYSTEM: "/system",
+  PRODUCT: "/product",
+  ORDER: "/order",
+  SIGNUP: "/signup",
+  PRODUCT_DETAIL: "/product-detail",
+
+  // NOPAGE: "*",
+  // DETAIL_PRODUCT: "/detail-product/:id",
 };
 
 export const LANGUAGES = {

@@ -8,7 +8,8 @@
     "news": "News",
     "promotion": "Promotion",
     "warranty": "Warranty",
-    "advisory": "Advisory"
+    "advisory": "Advisory",
+    "search": "What are you looking for..."
   },
   "common": {
     "add": "Add",
@@ -43,7 +44,8 @@
         "header": "System Administrator",
         "user-manage": "User manage",
         "product-manage": "Package manage",
-        "register-package-group-or-account": "Register service package for group/account"
+        "register-package-group-or-account": "Register service package for group/account",
+        "user-redux": "manage user redux"
       },
       "system-parameter": {
         "header": "System-parameter"

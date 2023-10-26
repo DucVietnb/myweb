@@ -13,7 +13,7 @@ import TopSeller from "./Section/TopSeller.js";
 import TopSearch from "./Section/TopSearch.js";
 import HomeGeneral from "./HomeGeneral.js";
 import HomeFooter from "./HomeFooter.js";
-
+import MainBanner from "./Header/MainBanner.js";
 //slider
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -27,8 +27,9 @@ class HomePage extends Component {
       slidesToScroll: 1,
     };
     return (
-      <div style={{ backgroundColor: "#f3f3f3" }}>
-        <HomeHeader />
+      <div>
+        {/* <HomeHeader /> */}
+        <MainBanner />
         <BannerSlide />
         <Spotlight />
         <BigPromotion setting={setting} />
@@ -37,8 +38,8 @@ class HomePage extends Component {
         <TopSeller setting={setting} />
         <CateFeature />
         <Brand />
-        <HomeGeneral />
-        <HomeFooter />
+        {/* <HomeGeneral />
+        <HomeFooter /> */}
       </div>
     );
   }

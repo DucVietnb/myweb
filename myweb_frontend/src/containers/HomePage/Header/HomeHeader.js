@@ -4,10 +4,21 @@ import "./HomeHeader.scss";
 import { FormattedMessage } from "react-intl";
 import { LANGUAGES } from "../../../utils";
 import { changeLanguage } from "../../../store/actions";
+import { withRouter } from "react-router";
 
 class HomeHeader extends Component {
   changeLanguage = (language) => {
     this.props.changeLanguage(language);
+  };
+  returnToHome = () => {
+    if (this.props.history) {
+      this.props.history.push(`/home`);
+    }
+  };
+  getLogin = () => {
+    if (this.props.history) {
+      this.props.history.push(`/login`);
+    }
   };
   render() {
     let language = this.props.language;
@@ -16,7 +27,10 @@ class HomeHeader extends Component {
         <div className="header__container">
           <div className="header__navbar">
             <div className="header__logo">
-              <div className="logo pointer__event"></div>
+              <div
+                className="logo pointer__event"
+                onClick={() => this.returnToHome()}
+              ></div>
             </div>
             <div className="header__search">
               <input type="text" placeholder="Bạn tìm gì..." />
@@ -29,7 +43,10 @@ class HomeHeader extends Component {
                   <FormattedMessage id="header__navbar.cart" />
                 </div>
               </div>
-              <div className="info__child pointer__event">
+              <div
+                className="info__child pointer__event"
+                onClick={() => this.getLogin()}
+              >
                 <i class="fas fa-user"></i>{" "}
                 <div className="child__content">
                   <FormattedMessage id="header__navbar.user" />
@@ -56,6 +73,16 @@ class HomeHeader extends Component {
                 <FormattedMessage id="header__menu.category" />
               </div>
               <i class="fas fa-sort-down"></i>
+              <div className="submenu">
+                <ul>
+                  <li>Tivi</li>
+                  <li>Tủ lanh</li>
+                  <li>Máy giặt</li>
+                  <li>Điều hòa</li>
+                  <li>Nóng lạnh</li>
+                  <li>Sức khỏe, làm đẹp</li>
+                </ul>
+              </div>
             </div>
             <div className="header__support">
               <div className="options pointer__event hover__event--blue">
@@ -85,9 +112,9 @@ class HomeHeader extends Component {
             </div>
           </div>
         </div>
-        <div className="banner__container">
+        {/* <div className="banner__container">
           <div className="first__banner"></div>
-        </div>
+        </div> */}
       </React.Fragment>
     );
   }
@@ -106,4 +133,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeHeader);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(HomeHeader)
+);
