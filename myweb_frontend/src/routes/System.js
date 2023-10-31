@@ -4,6 +4,8 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import UserManage from "../containers/System/UserManage";
 import Header from "../containers/Header-Login/Header";
 import UserRedux from "../containers/System/UserRedux";
+import UpdateProduct from "../containers/System/Product/UpdateProduct";
+import ManageProduct from "../containers/System/Product/ManageProduct";
 class System extends Component {
   render() {
     const { systemMenuPath, isLoggedIn } = this.props;
@@ -15,6 +17,13 @@ class System extends Component {
             <Switch>
               <Route path="/system/user-manage" component={UserManage} />
               <Route path="/system/user-redux" component={UserRedux} />
+              {/* <Route
+                path="/system/product-manage-create"
+                component={CreateProduct}
+              /> */}
+              <Route path="/system/product-manage" component={ManageProduct} />
+
+              <Route path="/system/product-update" component={UpdateProduct} />
 
               <Route
                 component={() => {
@@ -33,6 +42,7 @@ const mapStateToProps = (state) => {
   return {
     systemMenuPath: state.app.systemMenuPath,
     isLoggedIn: state.user.isLoggedIn,
+    dataUser: state?.user?.userInfo,
   };
 };
 

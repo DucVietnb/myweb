@@ -7,6 +7,8 @@ import { connect } from "react-redux";
 // import Lightbox from "react-image-lightbox";
 // import "react-image-lightbox/style.css";
 // import TableManageUser from "./TableManageUser";
+import { LANGUAGES } from "../../utils";
+import * as actions from "../../store/actions";
 class UserRedux extends Component {
   constructor(props) {
     super(props);

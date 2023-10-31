@@ -81,12 +81,53 @@ html {
         padding: 3px 12px;
         display: flex;
         flex-direction: column;
+        position: relative;
+        z-index: 100;
+
         i {
           font-size: 25px;
         }
         .child__content {
           font-weight: lighter;
           font-size: 17px;
+        }
+        .user__menu {
+          position: absolute;
+          min-width: 160px;
+          background: white;
+          top: 100%;
+          display: none;
+
+          right: 0;
+          border-radius: 4px;
+          border: 1px solid #ededed;
+          padding-right: 10px;
+          ul {
+            display: flex;
+            flex-direction: column;
+            padding-left: 10px !important;
+            margin-bottom: 0px !important;
+            .welcome {
+              margin-bottom: 4px;
+              width: max-content;
+              border-bottom: 1px solid #ededed;
+            }
+            li {
+              font-size: 14px;
+              padding: 5px 0;
+              color: black;
+            }
+            .button {
+              &:hover {
+                color: #1447fe;
+              }
+            }
+          }
+        }
+        &:hover {
+          .user__menu {
+            display: block;
+          }
         }
       }
     }
@@ -128,17 +169,37 @@ html {
       }
       .submenu {
         position: absolute;
-        width: 200px;
-        width: auto;
-        background: #efeded;
+        width: 70%;
+        margin: 0 60px;
+        background: white;
         left: 0;
         top: 100%;
-        padding: 20px;
         display: none;
+        border: 1px solid #ededed;
         ul {
           display: flex;
           flex-direction: column;
+          padding-left: 10px !important;
+          margin-bottom: 0px !important;
           li {
+            border-bottom: 1px solid #ededed;
+            font-size: 14px;
+            padding: 5px 0;
+            color: black !important;
+
+            i {
+              font-size: 14px !important;
+              width: 37px !important;
+            }
+            span {
+              margin-left: 15px;
+              font-size: 18px !important;
+            }
+            .posi-left {
+              position: absolute;
+              right: 0;
+              padding-top: 6px;
+            }
           }
         }
       }

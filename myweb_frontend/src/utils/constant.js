@@ -1,5 +1,5 @@
 export const path = {
-  // HOME: "/",
+  HOME: "/",
   HOMEPAGE: "/home",
   LOGIN: "/login",
   LOG_OUT: "/logout",
@@ -8,7 +8,7 @@ export const path = {
   ORDER: "/order",
   SIGNUP: "/signup",
   PRODUCT_DETAIL: "/product-detail",
-
+  NEWS: "/news",
   // NOPAGE: "*",
   // DETAIL_PRODUCT: "/detail-product/:id",
 };
@@ -18,10 +18,11 @@ export const LANGUAGES = {
   EN: "en",
 };
 
-export const manageActions = {
-  ADD: "ADD",
+export const MANAGE_ACTION = {
+  CREATE: "CREATE",
   EDIT: "EDIT",
   DELETE: "DELETE",
+  READ: "READ",
 };
 
 export const dateFormat = {

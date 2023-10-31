@@ -5,6 +5,8 @@ import { FormattedMessage } from "react-intl";
 import { LANGUAGES } from "../../../utils";
 import { changeLanguage } from "../../../store/actions";
 import { withRouter } from "react-router";
+import { push } from "connected-react-router";
+import * as actions from "../../../store/actions";
 
 class HomeHeader extends Component {
   changeLanguage = (language) => {
@@ -16,12 +18,20 @@ class HomeHeader extends Component {
     }
   };
   getLogin = () => {
-    if (this.props.history) {
-      this.props.history.push(`/login`);
-    }
+    this.props.history.push(`/login`);
   };
+  getNews = () => {
+    this.props.history.push(`/news`);
+  };
+  handleLogout = () => {
+    this.props.processLogout();
+    this.props.navigate("/login");
+  };
+
   render() {
     let language = this.props.language;
+    let { isLoggedIn, processLogout, userInfo } = this.props;
+    // console.log("check prop in home header", this.props);
     return (
       <React.Fragment>
         <div className="header__container">
@@ -38,7 +48,7 @@ class HomeHeader extends Component {
             </div>
             <div className="header__info">
               <div className="info__child pointer__event">
-                <i class="fas fa-shopping-cart"></i>
+                <i className="fas fa-shopping-cart"></i>
                 <div className="child__content">
                   <FormattedMessage id="header__navbar.cart" />
                 </div>
@@ -47,10 +57,44 @@ class HomeHeader extends Component {
                 className="info__child pointer__event"
                 onClick={() => this.getLogin()}
               >
-                <i class="fas fa-user"></i>{" "}
-                <div className="child__content">
-                  <FormattedMessage id="header__navbar.user" />
-                </div>
+                <i className="fas fa-user"></i>{" "}
+                {isLoggedIn === false && (
+                  <div className="child__content">
+                    <FormattedMessage id="header__navbar.user" />
+                    <div className="user__menu">
+                      <ul>
+                        <li className="welcome">
+                          Xin chào, vui lòng đăng nhập
+                        </li>
+                        <li
+                          className="button"
+                          onClick={() => this.handleLogout()}
+                        >
+                          Đăng nhập
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                )}
+                {isLoggedIn === true && (
+                  <div className="child__content">
+                    {userInfo.fullName}
+                    <div className="user__menu">
+                      <ul>
+                        <li className="welcome">
+                          Xin chào,
+                          {userInfo.fullName}
+                        </li>
+                        <li
+                          className="button"
+                          onClick={() => this.handleLogout()}
+                        >
+                          Đăng xuất
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
             <div className="header__language">
@@ -68,43 +112,60 @@ class HomeHeader extends Component {
           </div>
           <div className="header__menu">
             <div className="header__category pointer__event hover__event--blue">
-              <i class="fas fa-bars"></i>
+              <i className="fas fa-bars"></i>
               <div className="option_content hover__event--bigger">
                 <FormattedMessage id="header__menu.category" />
               </div>
-              <i class="fas fa-sort-down"></i>
+              <i className="fas fa-sort-down"></i>
               <div className="submenu">
                 <ul>
-                  <li>Tivi</li>
-                  <li>Tủ lanh</li>
-                  <li>Máy giặt</li>
-                  <li>Điều hòa</li>
-                  <li>Nóng lạnh</li>
-                  <li>Sức khỏe, làm đẹp</li>
+                  <li className="hover__event--bigger">
+                    <i className="fas fa-tv"></i>
+                    <span>Tivi</span>
+                    <i className="fas fa-chevron-right posi-left"></i>
+                  </li>
+                  <li className="hover__event--bigger">
+                    <i className="fas fa-snowflake"></i>
+                    <span>Tủ lạnh</span>
+                    <i className="fas fa-chevron-right posi-left"></i>
+                  </li>
+                  <li className="hover__event--bigger">
+                    <i className="fas fa-tint"></i>
+                    <span>Máy giặt</span>
+                    <i className="fas fa-chevron-right posi-left"></i>
+                  </li>
+                  <li className="hover__event--bigger">
+                    <i class="fas fa-leaf"></i>
+                    <span>Điều hòa</span>
+                    <i className="fas fa-chevron-right posi-left"></i>
+                  </li>
                 </ul>
               </div>
             </div>
             <div className="header__support">
               <div className="options pointer__event hover__event--blue">
-                <i class="fas fa-book"></i>
-                <div className="option_content option--hover hover__event--bigger">
+                <i className="fas fa-book"></i>
+                <div
+                  className="option_content option--hover hover__event--bigger"
+                  onClick={() => this.getNews()}
+                >
                   <FormattedMessage id="header__menu.news" />
                 </div>
               </div>
               <div className="options pointer__event hover__event--blue">
-                <i class="fas fa-percent"></i>
+                <i className="fas fa-percent"></i>
                 <div className="option_content option--hover hover__event--bigger">
                   <FormattedMessage id="header__menu.promotion" />
                 </div>
               </div>
               <div className="options pointer__event hover__event--blue">
-                <i class="fas fa-shield-alt"></i>
+                <i className="fas fa-shield-alt"></i>
                 <div className="option_content option--hover hover__event--bigger">
                   <FormattedMessage id="header__menu.warranty" />
                 </div>
               </div>
               <div className="options pointer__event hover__event--blue">
-                <i class="fas fa-phone-volume"></i>
+                <i className="fas fa-phone-volume"></i>
                 <div className="option_content hover__event--bigger">
                   <FormattedMessage id="header__menu.advisory" />
                 </div>
@@ -124,12 +185,15 @@ const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.user.isLoggedIn,
     language: state.app.language,
+    userInfo: state.user.userInfo,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     changeLanguage: (language) => dispatch(changeLanguage(language)),
+    processLogout: () => dispatch(actions.processLogout()),
+    navigate: (path) => dispatch(push(path)),
   };
 };
 

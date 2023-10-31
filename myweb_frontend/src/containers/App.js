@@ -29,6 +29,8 @@ import NotFoundPage from "./NotFoundPage/NotFoundPage";
 import HomeGeneral from "./HomePage/HomeGeneral";
 import HomeFooter from "./HomePage/HomeFooter";
 import ProductDetail from "./ProductDetail/ProductDetail";
+import News from "./general/News";
+import SignUp from "../containers/User/SignUp";
 class App extends Component {
   handlePersistorState = () => {
     const { persistor } = this.props;
@@ -52,6 +54,7 @@ class App extends Component {
     return (
       <Fragment>
         <Router history={history}>
+          {/* {console.log(history)} */}
           <div className="main-container">
             {/* {this.props.isLoggedIn && <Header />} */}
             <span className="content-container">
@@ -60,21 +63,13 @@ class App extends Component {
 
                 <Switch>
                   <Route path={path.HOME} exact component={Home} />
-                  <Route
-                    path={path.LOGIN}
-                    component={userIsNotAuthenticated(Login)}
-                  />
-                  <Route
-                    path={path.SIGNUP}
-                    component={userIsNotAuthenticated(Login)}
-                  />
-                  <Route
-                    path={path.SYSTEM}
-                    component={userIsAuthenticated(System)}
-                  />
+                  <Route path={path.LOGIN} component={Login} />
+                  <Route path={path.SIGNUP} component={SignUp} />
                   <Route path={path.HOMEPAGE} component={HomePage} />
+                  <Route path={path.SYSTEM} component={System} />
                   <Route path={path.PRODUCT} component={ProductPage} />
                   <Route path={path.PRODUCT_DETAIL} component={ProductDetail} />
+                  <Route path={path.NEWS} component={News} />
                   <Route path={path.NOPAGE} component={NotFoundPage} />
                 </Switch>
                 <HomeGeneral />
@@ -116,6 +111,7 @@ const mapStateToProps = (state) => {
   return {
     started: state.app.started,
     isLoggedIn: state.user.isLoggedIn,
+    dataUser: state?.user?.userInfo,
   };
 };
 
