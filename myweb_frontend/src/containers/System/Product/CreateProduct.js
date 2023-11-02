@@ -163,10 +163,10 @@ class CreateProduct extends Component {
     } = this.state;
     let percent;
     // this.state.percent = (this.state.truePrice / this.state.initPrice) * 100;
-    this.state.percent = (
+    this.state.percent = Math.ceil(
       ((this.state.initPrice - this.state.truePrice) / this.state.initPrice) *
-      100
-    ).toFixed();
+        100
+    );
 
     console.log("check state in create, percent", this.state.percent);
     return (
@@ -198,8 +198,8 @@ class CreateProduct extends Component {
                 <option>Tivi</option>
                 <option>Tủ lạnh</option>
                 <option>Máy giặt</option>
-                <option>Điều hòa</option>
-                <option>Nồi chiên không dầu</option>
+                <option>Máy làm mát không khí</option>
+                {/* <option>Nồi chiên không dầu</option> */}
                 <option>Máy hút bụi</option>
               </select>
             </div>
@@ -213,8 +213,8 @@ class CreateProduct extends Component {
                 }}
               >
                 <option>Panasonic</option>
-                <option>SamSung</option>
-                <option>Sony</option>
+                <option>TLC</option>
+                <option>LG</option>
               </select>
             </div>
           </div>

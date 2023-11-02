@@ -1,21 +1,24 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router";
 
 import "./AllSection.scss";
 
 class Breadcrumb extends Component {
+  returnToHome = () => {
+    if (this.props.history) {
+      this.props.history.push(`/home`);
+    }
+  };
   render() {
     return (
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
-          <li className="breadcrumb-item">
+          <li className="breadcrumb-item" onClick={() => this.returnToHome()}>
             <a href="#">Trang chủ</a>
           </li>
-          <li className="breadcrumb-item">
-            <a href="#">Điện tử</a>
-          </li>
           <li className="breadcrumb-item active" aria-current="page">
-            Tivi
+            {this.props.product}
           </li>
         </ol>
       </nav>
@@ -33,4 +36,6 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Breadcrumb);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(Breadcrumb)
+);

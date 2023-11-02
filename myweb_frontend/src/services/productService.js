@@ -4,8 +4,8 @@ const createProductService = (data) => {
   return axios.post("/api/product-create", data);
 };
 
-const getAllProducts = (id) => {
-  return axios.get(`/api/get-all-products?id=${id}`);
+const getAllProducts = () => {
+  return axios.get(`/api/get-all-products`);
 };
 
 const deleteProduct = (id) => {

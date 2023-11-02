@@ -38,6 +38,7 @@ class ManageProduct extends Component {
   };
   render() {
     console.log("check state in manage product", this.state.products);
+    console.log("check props", this.props);
     let arrProduct = this.state.products;
     return (
       <div className="manage-product__container">
@@ -62,12 +63,12 @@ class ManageProduct extends Component {
                     <td>{item.brand}</td>
                     <td>{item.truePrice}</td>
                     <td>
-                      <button
+                      {/* <button
                         className="btn--edit"
                         onClick={() => this.handleEditUser(item)}
                       >
                         <i className="fas fa-pencil-alt"></i>
-                      </button>
+                      </button> */}
                       <button
                         className="btn--delete"
                         onClick={() => this.handleDeleteProduct(item)}

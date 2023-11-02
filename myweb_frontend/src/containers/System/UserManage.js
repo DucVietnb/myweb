@@ -13,6 +13,7 @@ import {
 import ModalUser from "./ModalUser";
 import { emitter } from "../../utils/emmiter";
 import ModalEditUser from "./ModalEditUser";
+import ReactPaginate from "react-paginate";
 class UserManage extends Component {
   constructor(prop) {
     super(prop);
@@ -130,6 +131,13 @@ class UserManage extends Component {
       isModalEditUser: !this.state.isModalEditUser,
     });
   };
+  handlePageClick = () => {
+    // const newOffset = (event.selected * itemsPerPage) % items.length;
+    // console.log(
+    //   `User requested page number ${event.selected}, which is offset ${newOffset}`
+    // );
+    // setItemOffset(newOffset);
+  };
   render() {
     // console.log("check state manage user", this.state);
     // console.log("check props manage user", this.props);
@@ -197,6 +205,25 @@ class UserManage extends Component {
               })}
           </table>
         </div>
+        <ReactPaginate
+          breakLabel="..."
+          nextLabel="next >"
+          onPageChange={this.handlePageClick}
+          pageRangeDisplayed={5}
+          pageCount={10}
+          previousLabel="< previous"
+          renderOnZeroPageCount={null}
+          pageClassName="page-item"
+          pageLinkClassName="page-link"
+          previousClassName="page-item"
+          previousLinkClassName="page-link"
+          nextClassName="page-item"
+          nextLinkClassName="page-link"
+          breakClassName="page-item"
+          breakLinkClassName="page'link"
+          containerClassName="pagination"
+          activeClassName="active"
+        />
       </div>
     );
   }

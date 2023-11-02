@@ -8,9 +8,9 @@
   gap: 15px;
   justify-content: space-between;
   margin: 20px 100px;
-  //main
+  //promo
   .default-promotion__container {
-    width: 25%;
+    width: 24%;
     .detail__gift {
       display: block;
       margin: 15px 30px;
@@ -113,30 +113,21 @@
   }
   // img
   .detail-image__container {
-    width: 35%;
+    width: 34%;
     .img__all {
       margin-bottom: 15px;
       .img__bg {
         display: block;
-        min-height: 260px;
+        min-height: 300px;
         background-position: center center;
         background-repeat: no-repeat;
         background-size: contain;
-        &.slider0__img {
-          background-image: url("../../assets/images/detail/slider0.jpg");
-        }
-        &.slider1__img {
-          background-image: url("../../assets/images/detail/slider1.gif");
-        }
-        &.slider2__img {
-          background-image: url("../../assets/images/detail/slider2.gif");
-        }
       }
     }
   }
   //main
   .detail-main__container {
-    width: 40%;
+    width: 42%;
     .main-title {
       margin-bottom: 5px;
       border-bottom: 1px dotted #999;

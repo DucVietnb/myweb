@@ -10,11 +10,11 @@ import {
 //GET
 export const getAllProductsStart = () => {
   return async (dispatch, getState) => {
-    let res = await getAllProducts("ALL");
+    let res = await getAllProducts();
     if (res && res.errCode === 0) {
       dispatch({
         type: actionTypes.GET_ALL_PRODUCTS_SUCCESS,
-        products: res.products.reverse(),
+        products: res.products,
       });
     } else {
       toast.error("Can not get products");

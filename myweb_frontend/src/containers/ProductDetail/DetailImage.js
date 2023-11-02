@@ -6,19 +6,31 @@ import Slider from "react-slick";
 
 class DetailImage extends Component {
   render() {
+    let imageBase64 = "";
+    if (this.props.detailProduct && this.props.detailProduct.avatar) {
+      imageBase64 = new Buffer(
+        this.props.detailProduct.avatar,
+        "base64"
+      ).toString("binary");
+    }
     return (
       <>
         <div className="detail-image__container">
           <Slider {...this.props.setting}>
             <div className="img__all">
-              <div className="img__bg slider0__img"></div>
+              <div
+                className="img__bg"
+                style={{
+                  backgroundImage: `url(${imageBase64})`,
+                }}
+              ></div>
             </div>
-            <div className="img__all">
+            {/* <div className="img__all">
               <div className="img__bg slider1__img"></div>
             </div>
             <div className="img__all">
               <div className="img__bg slider2__img"></div>
-            </div>
+            </div> */}
           </Slider>
         </div>
       </>

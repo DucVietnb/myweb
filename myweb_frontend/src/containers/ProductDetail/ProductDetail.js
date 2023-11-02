@@ -7,10 +7,43 @@ import DefaultPromotion from "./DefaultPromotion";
 import DetailImage from "./DetailImage";
 import DetailMain from "./DetailMain";
 import ProductInformation from "./ProductInformation";
+import { getProductById } from "../../services/productService";
 //slider
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 class ProductDetail extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      detailProduct: {},
+      currentProductId: -1,
+    };
+  }
+  async componentDidMount() {
+    if (
+      this.props.match &&
+      this.props.match.params &&
+      this.props.match.params.id
+    ) {
+      let id = this.props.match.params.id;
+      this.setState({
+        currentProductId: id,
+      });
+      let res = await getProductById(id);
+      if (res && res.errCode === 0) {
+        this.setState({
+          detailProduct: res.product,
+        });
+      }
+    }
+  }
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.product !== this.props.product) {
+      this.setState({
+        product: this.props.product,
+      });
+    }
+  }
   render() {
     let setting = {
       dots: false,
@@ -19,15 +52,17 @@ class ProductDetail extends Component {
       slidesToShow: 1,
       slidesToScroll: 1,
     };
+    let { detailProduct } = this.state;
+    console.log("check detail", this.state);
     return (
       <>
-        <Breadcrumb />
+        <Breadcrumb product={detailProduct.type} />
         <div className="product-detail__container">
-          <DetailImage setting={setting} />
-          <DetailMain />
+          <DetailImage setting={setting} detailProduct={detailProduct} />
+          <DetailMain detailProduct={detailProduct} />
           <DefaultPromotion />
         </div>
-        <ProductInformation />
+        <ProductInformation detailProduct={detailProduct} />
       </>
     );
   }

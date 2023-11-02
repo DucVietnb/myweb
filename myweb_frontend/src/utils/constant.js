@@ -7,7 +7,7 @@ export const path = {
   PRODUCT: "/product",
   ORDER: "/order",
   SIGNUP: "/signup",
-  PRODUCT_DETAIL: "/product-detail",
+  PRODUCT_DETAIL: "/product-detail/:id",
   NEWS: "/news",
   // NOPAGE: "*",
   // DETAIL_PRODUCT: "/detail-product/:id",

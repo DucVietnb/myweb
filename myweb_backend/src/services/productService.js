@@ -1,5 +1,8 @@
 import bcrypt from "bcryptjs";
 import db from "../models/index";
+import { query } from "express";
+require("dotenv").config();
+
 let checkExistProduct = (productName) => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -57,11 +60,13 @@ let productCreateService = (data) => {
   });
 };
 
-let productGetAllService = (id) => {
+let productGetAllService = () => {
   return new Promise(async (resolve, reject) => {
     try {
-      let products = await db.Product.findAll();
-      console.log("check product", products);
+      let products = await db.Product.findAll({
+        order: [["createdAt", "DESC"]],
+      });
+      console.log(products);
       resolve(products);
     } catch (e) {
       reject(e);
@@ -136,7 +141,7 @@ let productDeleteService = (id) => {
     }
   });
 };
-let getProductByIdSẻvice = (id) => {
+let getProductByIdService = (id) => {
   return new Promise(async (resolve, reject) => {
     try {
       if (!id) {
@@ -159,10 +164,31 @@ let getProductByIdSẻvice = (id) => {
     }
   });
 };
+
+//test
+// let productGetAllPagiService = (page) => {
+//   return new Promise(async (resolve, reject) => {
+//     try {
+//       const queries = { raw: true, nest: true };
+//       const offset = +page && +page > 1 ? +page - 1 : 0;
+//       queries.offset = +offset * +process.env.LIMIT_TAKE;
+//       queries.limit = +process.env.LIMIT_TAKE;
+//       let products = await db.Product.findAndCountAll({
+//         where: query,
+//         // order: [["createdAt", "DESC"]],
+//         ...queries,
+//       });
+//       resolve(products);
+//     } catch (e) {
+//       reject(e);
+//     }
+//   });
+// };
 module.exports = {
   productCreateService: productCreateService,
   productGetAllService: productGetAllService,
   updateProductService: updateProductService,
   productDeleteService: productDeleteService,
-  getProductByIdSẻvice: getProductByIdSẻvice,
+  getProductByIdService: getProductByIdService,
+  // productGetAllPagiService: productGetAllPagiService,
 };

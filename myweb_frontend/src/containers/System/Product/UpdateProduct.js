@@ -162,10 +162,10 @@ class UpdateProduct extends Component {
   handleUpdateProduct = () => {
     // let isValid = this.checkValidateInput();
     // if (isValid === false) return;
-    // let imageBase64 = "";
-    // if (this.state.avatar) {
-    //   imageBase64 = new Buffer(this.state.avatar, "base64").toString("binary");
-    // }
+    let imageBase64 = "";
+    if (this.state.avatar) {
+      imageBase64 = new Buffer(this.state.avatar, "base64").toString("binary");
+    }
     this.props.updateProduct({
       id: this.state.selectedOption.value,
       name: this.state.name,
@@ -185,6 +185,7 @@ class UpdateProduct extends Component {
       contentHTML: this.state.contentHTML,
       description: this.state.description,
       descriptionHTML: this.state.descriptionHTML,
+      previewImgURL: imageBase64,
     });
   };
   render() {
@@ -204,10 +205,10 @@ class UpdateProduct extends Component {
       isNew,
     } = this.state;
     let percent;
-    this.state.percent = (
+    this.state.percent = Math.ceil(
       ((this.state.initPrice - this.state.truePrice) / this.state.initPrice) *
-      100
-    ).toFixed();
+        100
+    );
     console.log("check state in update product", this.state);
     return (
       <div className="create-product__container">
@@ -235,8 +236,8 @@ class UpdateProduct extends Component {
                 <option>Tivi</option>
                 <option>Tủ lạnh</option>
                 <option>Máy giặt</option>
-                <option>Điều hòa</option>
-                <option>Nồi chiên không dầu</option>
+                <option>Máy làm mát không khí</option>
+                {/* <option>Nồi chiên không dầu</option> */}
                 <option>Máy hút bụi</option>
               </select>
             </div>
@@ -250,8 +251,8 @@ class UpdateProduct extends Component {
                 }}
               >
                 <option>Panasonic</option>
-                <option>SamSung</option>
-                <option>Sony</option>
+                <option>TLC</option>
+                <option>LG</option>
               </select>
             </div>
           </div>
@@ -415,10 +416,10 @@ class UpdateProduct extends Component {
           />
         </div>
         <button
-          className="btn btn-primary"
+          className="btn btn-warning"
           onClick={() => this.handleUpdateProduct()}
         >
-          Thêm sản phẩm
+          Xác nhận chỉnh sửa
         </button>
         {this.state.isOpen === true && (
           <Lightbox

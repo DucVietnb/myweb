@@ -4,26 +4,42 @@ import { connect } from "react-redux";
 import "./ProductDetail.scss";
 import Breadcrumb from "../AllSection/Breadcrumb";
 class DetailMain extends Component {
+  formatCash = (number) => {
+    return number
+      .split("")
+      .reverse()
+      .reduce((prev, next, index) => {
+        return (index % 3 ? next : next + ",") + prev;
+      });
+  };
   render() {
+    let product = this.props.detailProduct;
     return (
       <>
         <div className="detail-main__container">
           <div className="main-title">
-            Smart Tivi NanoCell LG 4K 43 inch 43NANO77TPA
+            {product.type} {product.name}
           </div>
-          <div className="main-brand">Hãng: LG</div>
+          <div className="main-brand">Hãng: {product.type}</div>
           <div className="price">
-            <span className="price--sale">22.600.900 ₫</span>
+            <span className="price--sale">
+              {product.initPrice ? this.formatCash(product.initPrice) : ""} ₫
+            </span>
 
-            <span className="price--real">14.900.900 ₫</span>
+            <span className="price--real">
+              {product.truePrice ? this.formatCash(product.truePrice) : ""} ₫
+            </span>
           </div>
-          <div className="short-description">
-            Nền tảng thông minh webOS với Freeview Play, Netflix, Disney +… Công
+          <div
+            className="short-description"
+            dangerouslySetInnerHTML={{ __html: product.contentHTML }}
+          >
+            {/* Nền tảng thông minh webOS với Freeview Play, Netflix, Disney +… Công
             nghệ LG NanoCell cho màu sắc tinh khiết ở 4K Ultra HD. <br />
             Bộ xử lý lõi tứ nhanh 4K cho hình ảnh và âm thanh tinh tế. <br />
             HDR cho rạp chiếu phim, thể thao và chơi game hấp dẫn.
             <br /> Xuất xứ indonesia. Bảo hành 24 tháng chính hãng, có người đến
-            tận nhà.
+            tận nhà. */}
           </div>
           <div className="choice">
             <button className="btn buy-now">Mua Ngay</button>

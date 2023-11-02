@@ -38,6 +38,8 @@ let initWebRoutes = (app) => {
   router.delete("/api/delete-product", productController.productDelete);
   router.get("/api/get-product-by-id", productController.getProductById);
 
+  // router.get("/api/get-all-products-pagi", productController.productGetAllPagi);
+
   return app.use("/", router);
 };
 
