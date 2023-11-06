@@ -1,9 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { push } from "connected-react-router";
+import { withRouter } from "react-router";
 
 import "./ProductDetail.scss";
-import Breadcrumb from "../AllSection/Breadcrumb";
 class DetailMain extends Component {
+  constructor(prop) {
+    super(prop);
+    this.state = {};
+  }
+  componentDidMount() {}
+  componentDidUpdate() {}
   formatCash = (number) => {
     return number
       .split("")
@@ -12,8 +19,17 @@ class DetailMain extends Component {
         return (index % 3 ? next : next + ",") + prev;
       });
   };
+  handleAddOrderproduct = () => {
+    const { navigate, location } = this.props;
+    if (this.props.isLoggedIn || this.props.isLoggedIn == false) {
+      navigate(`/login`, { state: this.props.location?.pathname });
+      console.log("check navi", location?.pathname);
+    }
+    console.log("check props", location?.pathname);
+  };
   render() {
     let product = this.props.detailProduct;
+
     return (
       <>
         <div className="detail-main__container">
@@ -42,7 +58,12 @@ class DetailMain extends Component {
             tận nhà. */}
           </div>
           <div className="choice">
-            <button className="btn buy-now">Mua Ngay</button>
+            <button
+              className="btn buy-now"
+              onClick={this.handleAddOrderproduct}
+            >
+              Mua Ngay
+            </button>
             <button className="btn add-cart">Thêm vào giỏ hàng</button>
             <button className="btn call">
               Gọi tư vấn <span>0123456789</span> ( 24/7 )
@@ -56,12 +77,17 @@ class DetailMain extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    // isLoggedIn: state.user.isLoggedIn,
+    isLoggedIn: state.user.isLoggedIn,
+    dataUser: state?.user?.userInfo,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    navigate: (path) => dispatch(push(path)),
+  };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DetailMain);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(DetailMain)
+);

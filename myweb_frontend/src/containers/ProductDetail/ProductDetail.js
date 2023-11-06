@@ -17,6 +17,7 @@ class ProductDetail extends Component {
     this.state = {
       detailProduct: {},
       currentProductId: -1,
+      isDetail: false,
     };
   }
   async componentDidMount() {
@@ -56,7 +57,7 @@ class ProductDetail extends Component {
     console.log("check detail", this.state);
     return (
       <>
-        <Breadcrumb product={detailProduct.type} />
+        <Breadcrumb product={detailProduct} isDetail={true} />
         <div className="product-detail__container">
           <DetailImage setting={setting} detailProduct={detailProduct} />
           <DetailMain detailProduct={detailProduct} />

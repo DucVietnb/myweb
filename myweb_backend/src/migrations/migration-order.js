@@ -8,11 +8,34 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-
       userId: {
         type: Sequelize.INTEGER,
       },
+      productId: {
+        type: Sequelize.INTEGER,
+      },
+      totalQuantity: {
+        type: Sequelize.INTEGER,
+      },
+      shipPrice: {
+        type: Sequelize.STRING,
+      },
       totalPrice: {
+        type: Sequelize.STRING,
+      },
+      shipAddress: {
+        type: Sequelize.STRING,
+      },
+      cusName: {
+        type: Sequelize.STRING,
+      },
+      cusPhoneNumber: {
+        type: Sequelize.STRING,
+      },
+      status: {
+        type: Sequelize.INTEGER,
+      },
+      paymentMethod: {
         type: Sequelize.STRING,
       },
       order_status_payment: {
@@ -21,20 +44,21 @@ module.exports = {
       order_status_transport: {
         type: Sequelize.INTEGER,
       },
-      totalQuantity: {
+      isPaid: {
         type: Sequelize.INTEGER,
       },
-      productId: {
+      paidAt: {
+        type: Sequelize.STRING,
+      },
+      isDelivered: {
         type: Sequelize.INTEGER,
       },
-
-      shipAddress: {
+      deliveredAt: {
         type: Sequelize.STRING,
       },
       note: {
         type: Sequelize.STRING,
       },
-
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

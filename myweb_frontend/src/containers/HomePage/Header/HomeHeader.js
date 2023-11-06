@@ -27,7 +27,18 @@ class HomeHeader extends Component {
     this.props.processLogout();
     this.props.navigate("/login");
   };
-
+  getTivi = () => {
+    this.props.navigate("/tivi");
+  };
+  getFridge = () => {
+    this.props.navigate("/fridge");
+  };
+  getWashingMachine = () => {
+    this.props.navigate("/washing-machine");
+  };
+  goCart = () => {
+    this.props.navigate("/cart");
+  };
   render() {
     let language = this.props.language;
     let { isLoggedIn, processLogout, userInfo } = this.props;
@@ -47,7 +58,7 @@ class HomeHeader extends Component {
               <i className="fas fa-search pointer__event"></i>
             </div>
             <div className="header__info">
-              <div className="info__child pointer__event">
+              <div className="info__child pointer__event" onClick={this.goCart}>
                 <i className="fas fa-shopping-cart"></i>
                 <div className="child__content">
                   <FormattedMessage id="header__navbar.cart" />
@@ -119,17 +130,20 @@ class HomeHeader extends Component {
               <i className="fas fa-sort-down"></i>
               <div className="submenu">
                 <ul>
-                  <li className="hover__event--bigger">
+                  <li className="hover__event--bigger" onClick={this.getTivi}>
                     <i className="fas fa-tv"></i>
                     <span>Tivi</span>
                     <i className="fas fa-chevron-right posi-left"></i>
                   </li>
-                  <li className="hover__event--bigger">
+                  <li className="hover__event--bigger" onClick={this.getFridge}>
                     <i className="fas fa-snowflake"></i>
                     <span>Tủ lạnh</span>
                     <i className="fas fa-chevron-right posi-left"></i>
                   </li>
-                  <li className="hover__event--bigger">
+                  <li
+                    className="hover__event--bigger"
+                    onClick={this.getWashingMachine}
+                  >
                     <i className="fas fa-tint"></i>
                     <span>Máy giặt</span>
                     <i className="fas fa-chevron-right posi-left"></i>

@@ -9,6 +9,11 @@ export const path = {
   SIGNUP: "/signup",
   PRODUCT_DETAIL: "/product-detail/:id",
   NEWS: "/news",
+  PRODUCT_TIVI: "/tivi",
+  PRODUCT_FRIDGE: "/fridge",
+  PRODUCT_WASHING: "/washing-machine",
+  CART: "/cart",
+
   // NOPAGE: "*",
   // DETAIL_PRODUCT: "/detail-product/:id",
 };

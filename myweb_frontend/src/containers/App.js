@@ -31,6 +31,13 @@ import HomeFooter from "./HomePage/HomeFooter";
 import ProductDetail from "./ProductDetail/ProductDetail";
 import News from "./general/News";
 import SignUp from "../containers/User/SignUp";
+//produt
+import ProductTivi from "./ProductPage/ProductTivi.js";
+import ProductFridge from "./ProductPage/ProductFridge.js";
+import ProductWashingMachine from "./ProductPage/ProductWashingMachine.js";
+
+//order
+import Cart from "./OrderPage/Cart.js";
 class App extends Component {
   handlePersistorState = () => {
     const { persistor } = this.props;
@@ -69,7 +76,15 @@ class App extends Component {
                   <Route path={path.SYSTEM} component={System} />
                   <Route path={path.PRODUCT} component={ProductPage} />
                   <Route path={path.PRODUCT_DETAIL} component={ProductDetail} />
+                  <Route path={path.PRODUCT_TIVI} component={ProductTivi} />
+                  <Route path={path.PRODUCT_FRIDGE} component={ProductFridge} />
+                  <Route
+                    path={path.PRODUCT_WASHING}
+                    component={ProductWashingMachine}
+                  />
                   <Route path={path.NEWS} component={News} />
+                  <Route path={path.CART} component={Cart} />
+
                   <Route path={path.NOPAGE} component={NotFoundPage} />
                 </Switch>
                 <HomeGeneral />

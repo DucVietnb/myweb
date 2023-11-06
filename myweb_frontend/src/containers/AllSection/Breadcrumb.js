@@ -11,6 +11,7 @@ class Breadcrumb extends Component {
     }
   };
   render() {
+    console.log("chekc break", this.props);
     return (
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
@@ -18,8 +19,13 @@ class Breadcrumb extends Component {
             <a href="#">Trang chủ</a>
           </li>
           <li className="breadcrumb-item active" aria-current="page">
-            {this.props.product}
+            {this.props.product.type}
           </li>
+          {this.props.isDetail && this.props.isDetail === true && (
+            <li className="breadcrumb-item active" aria-current="page">
+              {this.props.product.name}
+            </li>
+          )}
         </ol>
       </nav>
     );
