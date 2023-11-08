@@ -66,7 +66,7 @@ let productGetAllService = () => {
       let products = await db.Product.findAll({
         order: [["createdAt", "DESC"]],
       });
-      console.log(products);
+      // console.log(products);
       resolve(products);
     } catch (e) {
       reject(e);

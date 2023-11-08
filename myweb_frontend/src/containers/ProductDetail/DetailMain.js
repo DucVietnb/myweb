@@ -2,12 +2,15 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
 import { withRouter } from "react-router";
-
+import * as actions from "../../store/actions";
 import "./ProductDetail.scss";
 class DetailMain extends Component {
   constructor(prop) {
     super(prop);
-    this.state = {};
+    this.state = {
+      userId: "",
+      productId: "",
+    };
   }
   componentDidMount() {}
   componentDidUpdate() {}
@@ -21,15 +24,20 @@ class DetailMain extends Component {
   };
   handleAddOrderproduct = () => {
     const { navigate, location } = this.props;
-    if (this.props.isLoggedIn || this.props.isLoggedIn == false) {
-      navigate(`/login`, { state: this.props.location?.pathname });
-      console.log("check navi", location?.pathname);
+    console.log("check props", this.props);
+    if (this.props.isLoggedIn === false) {
+      navigate(`/login`);
+    } else {
+      this.props.addCart({
+        userId: this.props.dataUser.id,
+        productId: this.props.detailProduct.id,
+      });
+      navigate(`/cart`);
+      console.log("check props in button", this.props);
     }
-    console.log("check props", location?.pathname);
   };
   render() {
     let product = this.props.detailProduct;
-
     return (
       <>
         <div className="detail-main__container">
@@ -49,14 +57,7 @@ class DetailMain extends Component {
           <div
             className="short-description"
             dangerouslySetInnerHTML={{ __html: product.contentHTML }}
-          >
-            {/* Nền tảng thông minh webOS với Freeview Play, Netflix, Disney +… Công
-            nghệ LG NanoCell cho màu sắc tinh khiết ở 4K Ultra HD. <br />
-            Bộ xử lý lõi tứ nhanh 4K cho hình ảnh và âm thanh tinh tế. <br />
-            HDR cho rạp chiếu phim, thể thao và chơi game hấp dẫn.
-            <br /> Xuất xứ indonesia. Bảo hành 24 tháng chính hãng, có người đến
-            tận nhà. */}
-          </div>
+          ></div>
           <div className="choice">
             <button
               className="btn buy-now"
@@ -85,6 +86,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     navigate: (path) => dispatch(push(path)),
+    addCart: (data) => dispatch(actions.addCart(data)),
   };
 };
 

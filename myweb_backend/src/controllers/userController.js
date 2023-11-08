@@ -16,7 +16,7 @@ let handleLogin = async (req, res) => {
     }
     let userData = await userService.handleUserLogin(email, password);
     let token = await createTokenRandom({ email: userData?.email, action });
-    console.log("token" + JSON.stringify(token));
+    // console.log("token" + JSON.stringify(token));
     //access token : JWT jison web token => cơ chế bảo mật
     return res
       .cookie("shop_cookie_admin", token, {

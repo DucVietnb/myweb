@@ -3,7 +3,7 @@ import homeController from "../controllers/homeController";
 import userController from "../controllers/userController";
 import customerController from "../controllers/customerController";
 import productController from "../controllers/productController";
-
+import orderController from "../controllers/orderController";
 // import {protectToken} from
 
 let router = express.Router();
@@ -39,6 +39,11 @@ let initWebRoutes = (app) => {
   router.get("/api/get-product-by-id", productController.getProductById);
 
   // router.get("/api/get-all-products-pagi", productController.productGetAllPagi);
+  //cart
+  router.post("/api/cart-add", orderController.cartAdd);
+  router.delete("/api/cart-delete", orderController.cartDelete);
+  router.get("/api/cart-getAll", orderController.cartGetAll);
+  router.post("/api/update-cart", orderController.cartUpdate);
 
   return app.use("/", router);
 };

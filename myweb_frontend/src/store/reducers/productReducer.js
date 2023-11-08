@@ -6,10 +6,7 @@ const initialState = {
 const productReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.GET_ALL_PRODUCTS_SUCCESS:
-      // console.log("check in product reducer", action);
       state.products = action.products;
-      console.log("check in product reducer", state.products);
-
       return {
         ...state,
       };

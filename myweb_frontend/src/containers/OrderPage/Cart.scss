@@ -30,7 +30,7 @@
     }
   }
   .cart {
-    min-height: 500px;
+    // min-height: 500px;
     // border: 1px solid red;
     display: flex;
     gap: 15px;
@@ -45,22 +45,28 @@
         tbody {
           vertical-align: middle;
           tr {
+            th {
+              i {
+                cursor: pointer;
+              }
+            }
             td {
               input {
                 font-size: 14px;
               }
               .product-info {
                 display: flex;
-                justify-content: space-between;
+                // justify-content: space-between;
                 .product-img {
                   width: 60px;
                   height: 60px;
                   background-position: center center;
                   background-repeat: no-repeat;
                   background-size: contain;
-                  background-image: url("../../assets/images/category-slide/big-promotion.webp");
+                  // background-image: url("../../assets/images/category-slide/big-promotion.webp");
                 }
                 .product-name {
+                  padding-left: 7px;
                   margin: auto 0;
                 }
               }

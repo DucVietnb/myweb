@@ -19,7 +19,7 @@ module.exports = {
       },
       quantity: {
         type: Sequelize.INTEGER,
-        defaultValue: 1,
+        // defaultValue: 1,
       },
       totalPrice: {
         type: Sequelize.STRING,

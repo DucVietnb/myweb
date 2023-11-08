@@ -45,7 +45,7 @@ const protectAdminToken = async (req, res, next) => {
     // console.log(req);
     // next();
     const { email } = req.decodeToken;
-    console.log(email);
+    // console.log(email);
     const data = await db.Admin.findOne({
       where: {
         email,
