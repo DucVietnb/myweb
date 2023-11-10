@@ -5,7 +5,6 @@ import CRUDservice from "../services/CRUDservice";
 let getHomePage = async (req, res) => {
   try {
     let data = await db.user.findAll();
-    // console.log(data)
     return res.render("homepage.ejs", {
       data: JSON.stringify(data), // chuyển data thành chuỗi string
     });

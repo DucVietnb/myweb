@@ -13,7 +13,8 @@ export const path = {
   PRODUCT_FRIDGE: "/fridge",
   PRODUCT_WASHING: "/washing-machine",
   CART: "/cart",
-
+  ORDER: "/order",
+  THANKS_ORDER: "/thanks-order/:id",
   // NOPAGE: "*",
   // DETAIL_PRODUCT: "/detail-product/:id",
 };

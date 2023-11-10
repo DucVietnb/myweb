@@ -12,11 +12,7 @@ import { CommonUtils } from "../../../utils";
 import Select from "react-select";
 import { getProductById } from "../../../services/productService";
 const mdParser = new MarkdownIt(/* Markdown-it options */);
-// const options = [
-//   { value: "hehe", label: "hehe" },
-//   { value: "haha", label: "haha" },
-//   { value: "aa", label: "aa" },
-// ];
+
 class UpdateProduct extends Component {
   constructor(props) {
     super(props);
@@ -189,6 +185,8 @@ class UpdateProduct extends Component {
     });
   };
   render() {
+    console.log("check state in update product", this.state);
+
     let {
       type,
       brand,
@@ -209,7 +207,6 @@ class UpdateProduct extends Component {
       ((this.state.initPrice - this.state.truePrice) / this.state.initPrice) *
         100
     );
-    console.log("check state in update product", this.state);
     return (
       <div className="create-product__container">
         <div className="title mb-3">Chỉnh sửa thông tin sản phẩm</div>

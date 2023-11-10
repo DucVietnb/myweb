@@ -31,11 +31,11 @@ class Header extends Component {
         <div className="header-tabs-container">
           <Navigator menus={adminMenu} />
         </div>
-        <div className="welcome">Xin chào, {userInfo.fullName}</div>
+        {/* <div className="welcome">Xin chào, {userInfo.fullName}</div> */}
         {/* nút logout */}
-        <div className="btn btn-logout" onClick={() => this.handleLogout()}>
+        {/* <div className="btn btn-logout" onClick={() => this.handleLogout()}>
           <i className="fas fa-sign-out-alt"></i>
-        </div>
+        </div> */}
       </div>
     );
   }

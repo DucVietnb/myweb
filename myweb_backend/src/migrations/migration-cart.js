@@ -17,9 +17,14 @@ module.exports = {
       productId: {
         type: Sequelize.INTEGER,
       },
+      productName: {
+        type: Sequelize.STRING,
+      },
+      productType: {
+        type: Sequelize.STRING,
+      },
       quantity: {
         type: Sequelize.INTEGER,
-        // defaultValue: 1,
       },
       totalPrice: {
         type: Sequelize.STRING,

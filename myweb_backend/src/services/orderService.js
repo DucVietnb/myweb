@@ -1,13 +1,13 @@
 import bcrypt from "bcryptjs";
 import db from "../models/index";
-
+//cart
 let checkExistCart = (userId, productId) => {
   return new Promise(async (resolve, reject) => {
     try {
       let user = await db.Cart.findOne({
         where: { userId: userId, productId: productId },
       });
-      if (user) {
+      if (user && user.orderId === null) {
         resolve(true);
       } else {
         resolve(false);
@@ -23,23 +23,16 @@ let cartAddService = (data) => {
     try {
       let product = await db.Product.findOne({
         where: { id: data.productId },
-        attributes: ["truePrice"],
+        attributes: ["name", "type", "truePrice"],
       });
       let truePrice = product === null ? 0 : product.truePrice;
-      //   if (product === null) {
-      //     console.log("check");
-      //     truePrice = 0;
-      //   } else {
-      //     truePrice = product.truePrice;
-      //   }
-
-      // console.log("===========check product in orderService", truePrice);
-
       let check = await checkExistCart(data.userId, data.productId);
       if (check) {
-        // console.log("cart exist");
         let cart = await db.Cart.findOne({
-          where: { userId: data.userId, productId: data.productId },
+          where: {
+            userId: data.userId,
+            productId: data.productId,
+          },
           raw: false,
         });
 
@@ -52,13 +45,16 @@ let cartAddService = (data) => {
         });
       } else {
         await db.Cart.create({
-          orderId: data.orderId,
+          orderId: null,
           userId: data.userId,
           productId: data.productId,
+          productName: product?.name,
+          productType: product?.type,
           quantity: 1,
           totalPrice: truePrice,
           note: data.note,
         });
+
         resolve({
           errCode: 0,
           errMessage: "Success",
@@ -110,11 +106,10 @@ let cartGetAllService = (userId) => {
         });
       } else {
         let cart = await db.Cart.findAll({
-          where: { userId: userId },
+          where: { userId: userId, orderId: null },
           order: [["createdAt", "DESC"]],
         });
         let product = {};
-        // console.log(cart);
         if (!cart) {
           cart = {};
           resolve({
@@ -176,9 +171,147 @@ let cartUpdateService = (data) => {
     }
   });
 };
+
+//order
+let orderCreateService = (data) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let order = await db.Order.create({
+        userId: data.userId,
+        totalQuantity: data.totalQuantity,
+        totalPrice: data.totalPrice,
+        shipAddress: data.shipAddress,
+        cusName: data.cusName,
+        cusPhoneNumber: data.cusPhoneNumber,
+        status: "Chờ xác nhận",
+        paymentMethod: data.paymentMethod,
+        isBill: data.isBill,
+        note: data.note,
+      });
+
+      resolve({
+        errCode: 0,
+        errMessage: "Success",
+        order: order,
+      });
+
+      resolve({
+        errCode: 0,
+        errMessage: "Success",
+      });
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+let cartUpdateAfterOrderService = (data) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let cart = await db.Cart.findOne({
+        where: { id: data.id },
+        raw: false,
+      });
+
+      if (cart) {
+        cart.orderId = data.orderId;
+        await cart.save();
+        resolve({
+          errCode: 0,
+          errMessage: "Success",
+        });
+      } else {
+        resolve({
+          errCode: 2,
+          errMessage: "No cart found!",
+        });
+      }
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+let getOrderByIdService = (id) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (!id) {
+        resolve({
+          errCode: 1,
+          errMessage: "Missing required parameter!",
+        });
+      } else {
+        let order = await db.Order.findOne({
+          where: { id: id },
+        });
+        if (!order) order = {};
+        resolve({
+          errCode: 0,
+          order: order,
+        });
+      }
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+let getCartByOrderIdService = (id) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (!id) {
+        resolve({
+          errCode: 1,
+          errMessage: "Missing required parameter!",
+        });
+      } else {
+        let cart = await db.Cart.findAll({
+          where: { orderId: id },
+          attributes: ["productName", "productType", "quantity"],
+        });
+        if (!cart) cart = {};
+        resolve({
+          errCode: 0,
+          cart: cart,
+        });
+      }
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+let orderCancelService = (data) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let order = await db.Order.findOne({
+        where: { id: data.id },
+        raw: false,
+      });
+
+      if (order) {
+        order.status = "Request cancel";
+        order.note = data.note;
+        await order.save();
+        resolve({
+          errCode: 0,
+          errMessage: "Success",
+        });
+      } else {
+        resolve({
+          errCode: 2,
+          errMessage: "No order found!",
+        });
+      }
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
 module.exports = {
   cartAddService: cartAddService,
   cartDeleteService: cartDeleteService,
   cartGetAllService: cartGetAllService,
   cartUpdateService: cartUpdateService,
+  orderCreateService: orderCreateService,
+  cartUpdateAfterOrderService: cartUpdateAfterOrderService,
+  getOrderByIdService: getOrderByIdService,
+  getCartByOrderIdService: getCartByOrderIdService,
+  orderCancelService: orderCancelService,
 };

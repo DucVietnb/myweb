@@ -11,14 +11,11 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER,
       },
-      productId: {
-        type: Sequelize.INTEGER,
-      },
       totalQuantity: {
         type: Sequelize.INTEGER,
       },
-      shipPrice: {
-        type: Sequelize.STRING,
+      isBill: {
+        type: Sequelize.INTEGER,
       },
       totalPrice: {
         type: Sequelize.STRING,
@@ -33,17 +30,12 @@ module.exports = {
         type: Sequelize.STRING,
       },
       status: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
       },
       paymentMethod: {
         type: Sequelize.STRING,
       },
-      order_status_payment: {
-        type: Sequelize.INTEGER,
-      },
-      order_status_transport: {
-        type: Sequelize.INTEGER,
-      },
+
       isPaid: {
         type: Sequelize.INTEGER,
       },

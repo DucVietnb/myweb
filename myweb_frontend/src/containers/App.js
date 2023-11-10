@@ -38,6 +38,8 @@ import ProductWashingMachine from "./ProductPage/ProductWashingMachine.js";
 
 //order
 import Cart from "./OrderPage/Cart.js";
+import Order from "./OrderPage/Order.js";
+import OrderThanks from "./OrderPage/OrderThanks.js";
 class App extends Component {
   handlePersistorState = () => {
     const { persistor } = this.props;
@@ -84,7 +86,8 @@ class App extends Component {
                   />
                   <Route path={path.NEWS} component={News} />
                   <Route path={path.CART} component={Cart} />
-
+                  <Route path={path.ORDER} component={Order} />
+                  <Route path={path.THANKS_ORDER} component={OrderThanks} />
                   <Route path={path.NOPAGE} component={NotFoundPage} />
                 </Switch>
                 <HomeGeneral />

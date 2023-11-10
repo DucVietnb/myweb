@@ -32,82 +32,87 @@
   .cart {
     // min-height: 500px;
     // border: 1px solid red;
-    display: flex;
-    gap: 15px;
-    margin: 70px 20px;
-    .cart__list {
-      // border: 1px solid green;
-      min-height: 100px;
-      width: 55%;
-      border-right: 2px solid #ececec;
 
-      table {
-        tbody {
-          vertical-align: middle;
-          tr {
-            th {
-              i {
-                cursor: pointer;
-              }
-            }
-            td {
-              input {
-                font-size: 14px;
-              }
-              .product-info {
-                display: flex;
-                // justify-content: space-between;
-                .product-img {
-                  width: 60px;
-                  height: 60px;
-                  background-position: center center;
-                  background-repeat: no-repeat;
-                  background-size: contain;
-                  // background-image: url("../../assets/images/category-slide/big-promotion.webp");
+    margin: 70px 20px;
+    .cart__main {
+      margin-top: 50px;
+
+      display: flex;
+      gap: 15px;
+      .cart__list {
+        // border: 1px solid green;
+        min-height: 100px;
+        width: 55%;
+        border-right: 2px solid #ececec;
+
+        table {
+          tbody {
+            vertical-align: middle;
+            tr {
+              th {
+                i {
+                  cursor: pointer;
                 }
-                .product-name {
-                  padding-left: 7px;
-                  margin: auto 0;
+              }
+              td {
+                input {
+                  font-size: 14px;
+                }
+                .product-info {
+                  display: flex;
+                  // justify-content: space-between;
+                  .product-img {
+                    width: 60px;
+                    height: 60px;
+                    background-position: center center;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    // background-image: url("../../assets/images/category-slide/big-promotion.webp");
+                  }
+                  .product-name {
+                    padding-left: 7px;
+                    margin: auto 0;
+                  }
                 }
               }
             }
           }
         }
       }
-    }
-    .cart__total {
-      //   border: 1px solid red;
-      height: 100px;
-      width: 45%;
-      display: flex;
-      flex-direction: column;
-      font-size: 16px;
-      .total__title {
-        border-bottom: 3px solid #ececec;
-        font-size: 22px;
-        font-weight: 500;
-        border-radius: 2px;
-      }
-      .tempo,
-      .total {
-        margin: 7px 0;
-        border-bottom: 2px solid #ececec;
-        .money {
-          float: right;
-          font-weight: 600;
-          padding-right: 10px;
+      .cart__total {
+        //   border: 1px solid red;
+        height: 100px;
+        width: 45%;
+        display: flex;
+        flex-direction: column;
+        font-size: 16px;
+        .total__title {
+          border-bottom: 3px solid #ececec;
+          font-size: 22px;
+          font-weight: 500;
+          border-radius: 2px;
         }
-      }
-      .btn {
-        background-image: linear-gradient(to top, #fec107, #fe9b07);
-        font-size: 20px;
-        margin: 10px auto;
-        width: 80%;
-        color: white;
-        border-radius: 4px;
+        .tempo,
+        .total {
+          margin: 7px 0;
+          border-bottom: 2px solid #ececec;
+          .money {
+            float: right;
+            font-weight: 600;
+            padding-right: 10px;
+          }
+        }
+        .btn {
+          background-image: linear-gradient(to top, #fec107, #fe9b07);
+          font-size: 20px;
+          margin: 10px auto;
+          width: 80%;
+          color: white;
+          border-radius: 4px;
 
-        &:hover {
-          opacity: 0.8;
+          &:hover {
+            opacity: 0.8;
+          }
         }
       }
     }

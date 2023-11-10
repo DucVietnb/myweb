@@ -119,6 +119,7 @@ class CreateProduct extends Component {
       });
     }
   };
+
   //create
   handleCreateProduct = () => {
     let isValid = this.checkValidateInput();
@@ -194,12 +195,10 @@ class CreateProduct extends Component {
                   this.onChangeInput(event, "type");
                 }}
               >
-                {/* <option>Chọn loại mặt hàng...</option> */}
                 <option>Tivi</option>
                 <option>Tủ lạnh</option>
                 <option>Máy giặt</option>
                 <option>Máy làm mát không khí</option>
-                {/* <option>Nồi chiên không dầu</option> */}
                 <option>Máy hút bụi</option>
               </select>
             </div>

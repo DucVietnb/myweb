@@ -44,6 +44,15 @@ let initWebRoutes = (app) => {
   router.delete("/api/cart-delete", orderController.cartDelete);
   router.get("/api/cart-getAll", orderController.cartGetAll);
   router.post("/api/update-cart", orderController.cartUpdate);
+  //order
+  router.post("/api/order-create", orderController.orderCreate);
+  router.post(
+    "/api/update-cart-after-order",
+    orderController.cartUpdateAfterOrder
+  );
+  router.get("/api/get-order-by-id", orderController.getOrderById);
+  router.get("/api/get-cart-by-orderId", orderController.getCartByOrderId);
+  router.post("/api/status-order-cancel-req", orderController.orderCancel);
 
   return app.use("/", router);
 };

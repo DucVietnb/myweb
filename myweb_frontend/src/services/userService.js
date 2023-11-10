@@ -28,7 +28,9 @@ const deleteUserService = (id) => {
 const editUserService = (data) => {
   return axios.put("/api/update-user", data);
 };
-
+const getUserById = (id) => {
+  return axios.get(`/api/get-all-users?id=${id}`);
+};
 // product
 const getAllProducts = (id) => {
   return axios.get(`/api/get-all-products?id=${id}`);
@@ -40,4 +42,5 @@ export {
   deleteUserService,
   editUserService,
   getAllProducts,
+  getUserById,
 };

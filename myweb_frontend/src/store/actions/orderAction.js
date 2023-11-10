@@ -5,8 +5,53 @@ import {
   getAllCartItem,
   deleteCart,
   UpdateCart,
+  orderCreateService,
+  getCartByOrderId,
 } from "../../services/orderService";
 //order
+export const orderCreate = (data) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await orderCreateService(data);
+      console.log("==========check action", data);
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.CREATE_ORDER_SUCCESS,
+          order: res.order,
+        });
+      } else {
+        dispatch(orderCreateFailed());
+      }
+    } catch (e) {
+      dispatch(orderCreateFailed());
+    }
+  };
+};
+export const orderCreateFailed = () => ({
+  type: actionTypes.CREATE_ORDER_FAIL,
+});
+export const getCartByOrderIdStart = (id) => {
+  return async (dispatch, getState) => {
+    let res = await getCartByOrderId(id);
+    console.log("=========hehe", res);
+
+    if (res && res.errCode === 0) {
+      dispatch({
+        type: actionTypes.GET_CART_BY_ID_SUCCESS,
+        cartOrder: res.cart,
+      });
+    } else {
+      dispatch(getCartByOrderIdFail());
+    }
+    try {
+    } catch (e) {
+      dispatch(getCartByOrderIdFail());
+    }
+  };
+};
+export const getCartByOrderIdFail = () => ({
+  type: actionTypes.GET_CART_BY_ID_FAIL,
+});
 //cart
 export const addCart = (data) => {
   return async (dispatch, getState) => {
@@ -25,6 +70,7 @@ export const addCart = (data) => {
 export const addCartFailed = () => ({
   type: actionTypes.ADD_PRODUCT_CART_FAIL,
 });
+
 export const getAllCartItemStart = (userId) => {
   return async (dispatch, getState) => {
     let res = await getAllCartItem(userId);

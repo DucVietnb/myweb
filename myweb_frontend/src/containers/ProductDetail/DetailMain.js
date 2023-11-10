@@ -28,12 +28,13 @@ class DetailMain extends Component {
     if (this.props.isLoggedIn === false) {
       navigate(`/login`);
     } else {
-      this.props.addCart({
-        userId: this.props.dataUser.id,
-        productId: this.props.detailProduct.id,
-      });
-      navigate(`/cart`);
-      console.log("check props in button", this.props);
+      setTimeout(() => {
+        this.props.addCart({
+          userId: this.props.dataUser.id,
+          productId: this.props.detailProduct.id,
+        });
+        navigate(`/cart`);
+      }, 500);
     }
   };
   render() {
