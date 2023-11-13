@@ -116,8 +116,13 @@ html {
               font-size: 14px;
               padding: 5px 0;
               color: black;
+              border-bottom: 1px solid #ededed;
             }
             .button {
+              i {
+                font-size: 14px;
+                margin-right: 5px;
+              }
               &:hover {
                 color: #1447fe;
               }

@@ -164,6 +164,7 @@ let updateUserData = (data) => {
         user.fullName = data.fullName;
         user.address = data.address;
         user.phoneNumber = data.phoneNumber;
+        user.gender = data.gender;
         await user.save();
         resolve({
           errCode: 0,
@@ -209,6 +210,33 @@ let getAllCodeService = (typeInput) => {
     }
   });
 };
+let handleGetOneUsersService = (id) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (!id) {
+        resolve({
+          errCode: 1,
+          errMessage: "Missing required parameter!",
+        });
+      } else {
+        let user = await db.user.findAll({
+          where: { id: id },
+          attributes: {
+            exclude: ["password"],
+          },
+        });
+        if (!user) user = {};
+
+        resolve({
+          errCode: 0,
+          user: user,
+        });
+      }
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
 module.exports = {
   handleUserLogin: handleUserLogin,
   getAllUsers: getAllUsers,
@@ -217,4 +245,5 @@ module.exports = {
   updateUserData: updateUserData,
   getUserById: getUserById,
   getAllCodeService: getAllCodeService,
+  handleGetOneUsersService: handleGetOneUsersService,
 };

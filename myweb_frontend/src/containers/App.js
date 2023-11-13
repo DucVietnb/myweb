@@ -30,7 +30,9 @@ import HomeGeneral from "./HomePage/HomeGeneral";
 import HomeFooter from "./HomePage/HomeFooter";
 import ProductDetail from "./ProductDetail/ProductDetail";
 import News from "./general/News";
+//cus
 import SignUp from "../containers/User/SignUp";
+import Account from "./User/Account.js";
 //produt
 import ProductTivi from "./ProductPage/ProductTivi.js";
 import ProductFridge from "./ProductPage/ProductFridge.js";
@@ -74,6 +76,7 @@ class App extends Component {
                   <Route path={path.HOME} exact component={Home} />
                   <Route path={path.LOGIN} component={Login} />
                   <Route path={path.SIGNUP} component={SignUp} />
+                  <Route path={path.ACCOUNT} component={Account} />
                   <Route path={path.HOMEPAGE} component={HomePage} />
                   <Route path={path.SYSTEM} component={System} />
                   <Route path={path.PRODUCT} component={ProductPage} />
@@ -88,6 +91,7 @@ class App extends Component {
                   <Route path={path.CART} component={Cart} />
                   <Route path={path.ORDER} component={Order} />
                   <Route path={path.THANKS_ORDER} component={OrderThanks} />
+
                   <Route path={path.NOPAGE} component={NotFoundPage} />
                 </Switch>
                 <HomeGeneral />
@@ -95,18 +99,6 @@ class App extends Component {
               </CustomScrollbars>
             </span>
 
-            {/* <ToastContainer
-              className="toast-container"
-              toastClassName="toast-item"
-              bodyClassName="toast-item-body"
-              autoClose={false}
-              hideProgressBar={true}
-              pauseOnHover={false}
-              pauseOnFocusLoss={true}
-              closeOnClick={false}
-              draggable={false}
-              closeButton={<CustomToastCloseButton />}
-            /> */}
             <ToastContainer
               position="bottom-right"
               autoClose={5000}

@@ -187,6 +187,7 @@ let orderCreateService = (data) => {
         paymentMethod: data.paymentMethod,
         isBill: data.isBill,
         note: data.note,
+        isPay: 0,
       });
 
       resolve({
@@ -264,7 +265,7 @@ let getCartByOrderIdService = (id) => {
       } else {
         let cart = await db.Cart.findAll({
           where: { orderId: id },
-          attributes: ["productName", "productType", "quantity"],
+          attributes: ["productName", "productType", "quantity", "totalPrice"],
         });
         if (!cart) cart = {};
         resolve({
@@ -304,6 +305,44 @@ let orderCancelService = (data) => {
     }
   });
 };
+let getOrderByUserIdService = (id) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (!id) {
+        resolve({
+          errCode: 1,
+          errMessage: "Missing required parameter!",
+        });
+      } else {
+        let order = await db.Order.findAll({
+          where: { userId: id },
+          order: [["createdAt", "DESC"]],
+          include: [
+            {
+              model: db.Cart,
+              order: [["createdAt", "DESC"]],
+              attributes: [
+                "productName",
+                "productType",
+                "quantity",
+                "totalPrice",
+              ],
+            },
+          ],
+          raw: false,
+          nest: true,
+        });
+        if (!order) order = {};
+        resolve({
+          errCode: 0,
+          order: order,
+        });
+      }
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
 module.exports = {
   cartAddService: cartAddService,
   cartDeleteService: cartDeleteService,
@@ -314,4 +353,5 @@ module.exports = {
   getOrderByIdService: getOrderByIdService,
   getCartByOrderIdService: getCartByOrderIdService,
   orderCancelService: orderCancelService,
+  getOrderByUserIdService: getOrderByUserIdService,
 };

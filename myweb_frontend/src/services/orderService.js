@@ -9,11 +9,13 @@ const cartUpdateAfterOrder = (data) => {
 const getOrderById = (id) => {
   return axios.get(`/api/get-order-by-id?id=${id}`);
 };
-const getCartByOrderId = (id) => {
-  return axios.get(`/api/get-cart-by-orderId?id=${id}`);
-};
+
 const orderCancel = (data) => {
   return axios.post(`/api/status-order-cancel-req`, data);
+};
+
+const getOrderByUserId = (id) => {
+  return axios.get(`/api/get-order-by-userId?id=${id}`);
 };
 //CART
 const addCartService = (data) => {
@@ -33,6 +35,9 @@ const deleteCart = (id) => {
 const UpdateCart = (data) => {
   return axios.post(`/api/update-cart`, data);
 };
+const getCartByOrderId = (id) => {
+  return axios.get(`/api/get-cart-by-orderId?id=${id}`);
+};
 export {
   addCartService,
   getAllCartItem,
@@ -43,4 +48,5 @@ export {
   getOrderById,
   getCartByOrderId,
   orderCancel,
+  getOrderByUserId,
 };

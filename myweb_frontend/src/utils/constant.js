@@ -15,6 +15,10 @@ export const path = {
   CART: "/cart",
   ORDER: "/order",
   THANKS_ORDER: "/thanks-order/:id",
+  EDIT_INFO: "/edit-info",
+  CUS_ORDER: "/your-order",
+  ACCOUNT: "/account",
+
   // NOPAGE: "*",
   // DETAIL_PRODUCT: "/detail-product/:id",
 };

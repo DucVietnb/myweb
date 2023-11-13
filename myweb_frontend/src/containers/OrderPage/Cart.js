@@ -55,7 +55,6 @@ class Cart extends Component {
   handleKeyDown = (event, item) => {
     if (event.key === "Enter") {
       let { quantity } = this.state;
-      console.log("=========check quantity", +quantity);
       if (quantity > 0 && quantity < 6) {
         let data = {};
         data.id = item.id;

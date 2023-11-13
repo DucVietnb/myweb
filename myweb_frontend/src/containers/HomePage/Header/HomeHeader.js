@@ -39,6 +39,11 @@ class HomeHeader extends Component {
   goCart = () => {
     this.props.navigate("/cart");
   };
+  goAccount = (string) => {
+    setTimeout(() => {
+      this.props.navigate("/account");
+    }, 100);
+  };
   render() {
     let language = this.props.language;
     let { isLoggedIn, processLogout, userInfo } = this.props;
@@ -96,11 +101,17 @@ class HomeHeader extends Component {
                           Xin chào,
                           {userInfo.fullName}
                         </li>
+
+                        <li className="button" onClick={() => this.goAccount()}>
+                          <i className="fas fa-folder-open"></i>
+                          <span>Quản lý tài khoản</span>
+                        </li>
                         <li
                           className="button"
                           onClick={() => this.handleLogout()}
                         >
-                          Đăng xuất
+                          <i className="fas fa-sign-out-alt"></i>
+                          <span>Đăng xuất</span>
                         </li>
                       </ul>
                     </div>
@@ -149,7 +160,7 @@ class HomeHeader extends Component {
                     <i className="fas fa-chevron-right posi-left"></i>
                   </li>
                   <li className="hover__event--bigger">
-                    <i class="fas fa-leaf"></i>
+                    <i className="fas fa-leaf"></i>
                     <span>Điều hòa</span>
                     <i className="fas fa-chevron-right posi-left"></i>
                   </li>

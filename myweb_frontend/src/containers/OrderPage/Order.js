@@ -23,18 +23,20 @@ class Order extends Component {
     };
   }
   async componentDidMount() {
-    setTimeout(() => {
+    setTimeout(async () => {
       this.props.getAllCartItemStart(this.props?.dataUser?.id);
+      let res = await getUserById(this.props?.dataUser?.id);
+      let user = res.user[0];
+      console.log("check res in order", user);
+
+      if (res && res.errCode === 0) {
+        this.setState({
+          fullName: user.fullName,
+          shipAddress: user.address,
+          phoneNumber: user.phoneNumber,
+        });
+      }
     }, 500);
-    let res = await getUserById(this.props?.dataUser?.id);
-    if (res && res.errCode === 0) {
-      console.log("===========check res", res);
-      this.setState({
-        fullName: res.users.fullName,
-        shipAddress: res.users.address,
-        phoneNumber: res.users.phoneNumber,
-      });
-    }
   }
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.cart !== this.props.cart) {
@@ -99,8 +101,6 @@ class Order extends Component {
   };
   autoSetOrderId = async () => {
     let { cart } = this.state;
-    console.log("======check auto", cart);
-
     for (let i = 0; i < cart.length; i++) {
       await cartUpdateAfterOrder({
         id: cart[i].id,

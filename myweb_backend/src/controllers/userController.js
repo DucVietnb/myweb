@@ -37,9 +37,6 @@ let handleLogin = async (req, res) => {
 };
 
 let handleGetAllUsers = async (req, res) => {
-  let id = req.query.id;
-  //   const cookie = req.cookie.shop_cookie_admin;
-  //   console.log(cookie);
   if (!id) {
     return res.status(200).json({
       errCode: 1,
@@ -48,7 +45,6 @@ let handleGetAllUsers = async (req, res) => {
     });
   }
   let users = await userService.getAllUsers(id);
-  //   console.log(users);
   return res.status(200).json({
     errCode: 0,
     errMessage: "ok",
@@ -84,6 +80,19 @@ let handleDeleteUser = async (req, res) => {
     return res.status(200).json(message);
   }
 };
+let handleGetOneUsers = async (req, res) => {
+  try {
+    let user = await userService.handleGetOneUsersService(req.query.id);
+
+    return res.status(200).json(user);
+  } catch (e) {
+    console.log(e);
+    return res.status(200).json({
+      errCode: -1,
+      errMessage: "Can not get order from server ...",
+    });
+  }
+};
 // #52
 let getAllCode = async (req, res) => {
   try {
@@ -104,4 +113,5 @@ module.exports = {
   handleUpdateUser: handleUpdateUser,
   handleDeleteUser: handleDeleteUser,
   getAllCode: getAllCode,
+  handleGetOneUsers: handleGetOneUsers,
 };

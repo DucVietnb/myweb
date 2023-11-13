@@ -7,13 +7,13 @@ import {
   UpdateCart,
   orderCreateService,
   getCartByOrderId,
+  getOrderByUserId,
 } from "../../services/orderService";
 //order
 export const orderCreate = (data) => {
   return async (dispatch, getState) => {
     try {
       let res = await orderCreateService(data);
-      console.log("==========check action", data);
       if (res && res.errCode === 0) {
         dispatch({
           type: actionTypes.CREATE_ORDER_SUCCESS,
@@ -33,7 +33,6 @@ export const orderCreateFailed = () => ({
 export const getCartByOrderIdStart = (id) => {
   return async (dispatch, getState) => {
     let res = await getCartByOrderId(id);
-    console.log("=========hehe", res);
 
     if (res && res.errCode === 0) {
       dispatch({
@@ -51,6 +50,29 @@ export const getCartByOrderIdStart = (id) => {
 };
 export const getCartByOrderIdFail = () => ({
   type: actionTypes.GET_CART_BY_ID_FAIL,
+});
+
+export const getOrderByUserIdStart = (id) => {
+  return async (dispatch, getState) => {
+    let res = await getOrderByUserId(id);
+    console.log("========check res", res);
+
+    if (res && res.errCode === 0) {
+      dispatch({
+        type: actionTypes.GET_CART_BY_USERID_SUCCESS,
+        orderUserId: res.order,
+      });
+    } else {
+      dispatch(getOrderByUserIdFail());
+    }
+    try {
+    } catch (e) {
+      dispatch(getOrderByUserIdFail());
+    }
+  };
+};
+export const getOrderByUserIdFail = () => ({
+  type: actionTypes.GET_CART_BY_USERID_FAIL,
 });
 //cart
 export const addCart = (data) => {

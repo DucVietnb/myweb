@@ -111,6 +111,20 @@ let orderCancel = async (req, res) => {
     return res.status(200).json(message);
   }
 };
+let getOrderByUserId = async (req, res) => {
+  try {
+    let order = await orderService.getOrderByUserIdService(req.query.id);
+    console.log("check order ", typeof order);
+    return res.status(200).json(order);
+  } catch (e) {
+    console.log(e);
+    return res.status(200).json({
+      errCode: -1,
+      errMessage: "Can not get order from server ...",
+    });
+  }
+};
+
 module.exports = {
   cartAdd: cartAdd,
   cartDelete: cartDelete,
@@ -121,4 +135,5 @@ module.exports = {
   getOrderById: getOrderById,
   getCartByOrderId: getCartByOrderId,
   orderCancel: orderCancel,
+  getOrderByUserId: getOrderByUserId,
 };

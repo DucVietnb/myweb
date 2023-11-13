@@ -1,6 +1,5 @@
 import actionTypes from "./actionTypes";
 import { toast } from "react-toastify";
-import { getAllProducts } from "../../services/userService";
 export const addUserSuccess = () => ({
   type: actionTypes.ADD_USER_SUCCESS,
 });

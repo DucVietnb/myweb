@@ -1,10 +1,9 @@
 .order-thanks__container {
   min-height: 60vh;
-  border: 1px solid red;
   margin: 50px 500px;
+  border: 1px solid #ececec;
   .order-thanks__title {
     width: 100%;
-    border: 1px solid green;
     color: rgb(246, 244, 241);
     display: flex;
     justify-content: center;
@@ -19,7 +18,6 @@
   }
   .order-thanks__content {
     padding: 10px;
-    border: 1px solid yellow;
     font-size: 14px;
     display: flex;
     flex-direction: column;

@@ -4,6 +4,7 @@ const initialState = {
   cart: [],
   order: [],
   cartOrder: [],
+  orderUserId: [],
 };
 const orderReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -29,21 +30,28 @@ const orderReducer = (state = initialState, action) => {
       };
     case actionTypes.GET_CART_BY_ID_SUCCESS:
       state.cartOrder = action.cartOrder;
-      console.log("=========hehhheeee", state.cartOrder);
 
       return {
         ...state,
       };
     case actionTypes.GET_CART_BY_ID_FAIL:
       state.cartOrder = [];
+
       return {
         ...state,
       };
-    case actionTypes.DELETE_PRODUCT_CART:
-      let newCart = state.cartArr;
-      const objIndex = newCart.findIndex((obj) => obj.id === action.product.id);
-      newCart.splice(objIndex, 1);
-      return { cartArr: [...newCart] };
+    case actionTypes.GET_CART_BY_USERID_SUCCESS:
+      state.orderUserId = action.orderUserId;
+
+      return {
+        ...state,
+      };
+    case actionTypes.GET_CART_BY_USERID_FAIL:
+      state.orderUserId = [];
+
+      return {
+        ...state,
+      };
     default:
       return state;
   }

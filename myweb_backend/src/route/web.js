@@ -4,6 +4,7 @@ import userController from "../controllers/userController";
 import customerController from "../controllers/customerController";
 import productController from "../controllers/productController";
 import orderController from "../controllers/orderController";
+import adminController from "../controllers/adminController";
 // import {protectToken} from
 
 let router = express.Router();
@@ -26,6 +27,8 @@ let initWebRoutes = (app) => {
   router.post("/api/create-users", userController.handleCreateUser);
   router.put("/api/update-user", userController.handleUpdateUser);
   router.delete("/api/delete-user", userController.handleDeleteUser);
+  router.get("/api/get-user-by-id", userController.handleGetOneUsers);
+
   //#52
   router.get("/api/allcode", userController.getAllCode);
 
@@ -53,6 +56,10 @@ let initWebRoutes = (app) => {
   router.get("/api/get-order-by-id", orderController.getOrderById);
   router.get("/api/get-cart-by-orderId", orderController.getCartByOrderId);
   router.post("/api/status-order-cancel-req", orderController.orderCancel);
+  router.get("/api/get-order-by-userId", orderController.getOrderByUserId);
+
+  //ordermanage
+  router.get("/api/get-order-checking", adminController.getOrderChecking);
 
   return app.use("/", router);
 };
