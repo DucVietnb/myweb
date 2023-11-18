@@ -8,6 +8,11 @@ import {
   orderCreateService,
   getCartByOrderId,
   getOrderByUserId,
+  getOrderChecking,
+  orderDelete,
+  orderUpdate,
+  orderUpdateStatus,
+  getOrderByStatus,
 } from "../../services/orderService";
 //order
 export const orderCreate = (data) => {
@@ -156,4 +161,89 @@ export const updateCartStart = (data) => {
 };
 export const updateCartFailed = () => ({
   type: actionTypes.UPDATE_CART_FAIL,
+});
+
+//ORDER ADMIN
+export const getOrderCheckingStart = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getOrderChecking();
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.GET_CHECKING_ORDER_SUCCESS,
+          orderChecking: res.order,
+        });
+      } else {
+        dispatch(getOrderCheckingFail());
+      }
+    } catch (e) {
+      console.log(e);
+      dispatch(getOrderCheckingFail());
+    }
+  };
+};
+export const getOrderCheckingFail = () => ({
+  type: actionTypes.GET_CHECKING_ORDER_FAIL,
+});
+export const getOrderByStatusStart = (status) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getOrderByStatus(status);
+
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.GET_ORDER_BY_STATUS_SUCCESS,
+          order: res.order,
+        });
+      } else {
+        dispatch(getOrderByStatusFail());
+      }
+    } catch (e) {
+      console.log(e);
+      dispatch(getOrderByStatusFail());
+    }
+  };
+};
+export const getOrderByStatusFail = () => ({
+  type: actionTypes.GET_ORDER_BY_STATUS_FAIL,
+});
+
+export const deleteOrderStart = (id) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await orderDelete(id);
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.DELETE_ORDER_SUCCESS,
+        });
+      } else {
+        dispatch(deleteOrderFailed());
+      }
+    } catch (e) {
+      dispatch(deleteOrderFailed());
+    }
+  };
+};
+export const deleteOrderFailed = () => ({
+  type: actionTypes.DELETE_ORDER_FAIL,
+});
+
+export const orderUpdateStatusStart = (data) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await orderUpdateStatus(data);
+      if (res && res.errCode === 0) {
+        dispatch({
+          type: actionTypes.UPDATE_ORDER_STATUS_SUCCESS,
+        });
+      } else {
+        dispatch(orderUpdateStatusFailed());
+      }
+    } catch (e) {
+      dispatch(orderUpdateStatusFailed());
+    }
+  };
+};
+export const orderUpdateStatusFailed = () => ({
+  type: actionTypes.UPDATE_ORDER_STATUS_FAIL,
 });

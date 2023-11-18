@@ -60,6 +60,11 @@ let initWebRoutes = (app) => {
 
   //ordermanage
   router.get("/api/get-order-checking", adminController.getOrderChecking);
+  router.get("/api/get-order-status", adminController.getOrderStatus);
+
+  router.delete("/api/order-delete", adminController.orderDelete);
+  router.post("/api/update-order", adminController.orderUpdate);
+  router.post("/api/update-order-status", adminController.orderUpdateStatus);
 
   return app.use("/", router);
 };

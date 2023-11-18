@@ -33,7 +33,7 @@ class HomePage extends Component {
         <BannerSlide />
         <Spotlight />
         <BigPromotion setting={setting} />
-        <TopSearch setting={setting} />
+        {/* <TopSearch setting={setting} /> */}
         <NewProduct setting={setting} />
         <TopSeller setting={setting} />
         <CateFeature />

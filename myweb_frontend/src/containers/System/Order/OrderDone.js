@@ -5,7 +5,7 @@ import * as actions from "../../../store/actions";
 import "./Order.scss";
 import ModalOrder from "./ModalOrder";
 import { orderUpdate } from "../../../services/orderService";
-class OrderChecking extends Component {
+class OrderDone extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,7 +15,7 @@ class OrderChecking extends Component {
     };
   }
   componentDidMount() {
-    this.props.getOrderByStatusStart("Chờ xác nhận");
+    this.props.getOrderByStatusStart("Đã hoàn thành");
   }
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.order !== this.props.order) {
@@ -38,7 +38,7 @@ class OrderChecking extends Component {
   handleDeleteOrder = (id) => {
     this.props.deleteOrderStart(id);
     setTimeout(() => {
-      this.props.getOrderByStatusStart("Chờ xác nhận");
+      this.props.getOrderByStatusStart("Đã hoàn thành");
     }, 500);
   };
 
@@ -63,7 +63,7 @@ class OrderChecking extends Component {
           isModalOrder: false,
         });
         setTimeout(() => {
-          this.props.getOrderByStatusStart("Chờ xác nhận");
+          this.props.getOrderByStatusStart("Đã hoàn thành");
         }, 500);
       } else if (res && res.errCode !== 0) {
         alert(res.errMessage);
@@ -72,15 +72,7 @@ class OrderChecking extends Component {
       console.log(e);
     }
   };
-  handleConfirm = (id) => {
-    this.props.orderUpdateStatusStart({
-      id: id,
-      status: "Chờ giao hàng",
-    });
-    setTimeout(() => {
-      this.props.getOrderByStatusStart("Chờ xác nhận");
-    }, 500);
-  };
+
   render() {
     console.log("check state in checking", this.state);
     console.log("check props in checking", this.props);
@@ -95,7 +87,7 @@ class OrderChecking extends Component {
             doEditOrder={this.doEditOrder}
           />
         )}
-        <div className="title py-2">Đơn hàng chờ xác nhận</div>
+        <div className="title py-2">Đơn hàng đã hoàn thành</div>
         <div className="checking__body">
           <table id="OrderManage">
             <tr>
@@ -131,12 +123,6 @@ class OrderChecking extends Component {
                       >
                         <i className="fas fa-trash"></i>
                       </button>
-                      <button
-                        className="btn--confirm"
-                        onClick={() => this.handleConfirm(item.id)}
-                      >
-                        <i className="fas fa-check"></i>
-                      </button>
                     </td>
                   </tr>
                 );
@@ -147,7 +133,6 @@ class OrderChecking extends Component {
     );
   }
 }
-
 const mapStateToProps = (state) => {
   return {
     order: state.order.orderStatus,
@@ -164,4 +149,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(OrderChecking);
+export default connect(mapStateToProps, mapDispatchToProps)(OrderDone);

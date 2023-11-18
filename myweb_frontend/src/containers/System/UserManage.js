@@ -53,6 +53,7 @@ class UserManage extends Component {
   }
   getAllUsersFromReact = async () => {
     let response = await getAllUsers("ALL");
+
     if (response && response.errCode === 0) {
       this.setState({
         arrUsers: response.users,
@@ -131,16 +132,10 @@ class UserManage extends Component {
       isModalEditUser: !this.state.isModalEditUser,
     });
   };
-  handlePageClick = () => {
-    // const newOffset = (event.selected * itemsPerPage) % items.length;
-    // console.log(
-    //   `User requested page number ${event.selected}, which is offset ${newOffset}`
-    // );
-    // setItemOffset(newOffset);
-  };
+  handlePageClick = () => {};
   render() {
-    // console.log("check state manage user", this.state);
-    // console.log("check props manage user", this.props);
+    console.log("check state manage user", this.state);
+    console.log("check props manage user", this.props);
 
     let arrUsers = this.state.arrUsers;
     return (
@@ -205,25 +200,6 @@ class UserManage extends Component {
               })}
           </table>
         </div>
-        <ReactPaginate
-          breakLabel="..."
-          nextLabel="next >"
-          onPageChange={this.handlePageClick}
-          pageRangeDisplayed={5}
-          pageCount={10}
-          previousLabel="< previous"
-          renderOnZeroPageCount={null}
-          pageClassName="page-item"
-          pageLinkClassName="page-link"
-          previousClassName="page-item"
-          previousLinkClassName="page-link"
-          nextClassName="page-item"
-          nextLinkClassName="page-link"
-          breakClassName="page-item"
-          breakLinkClassName="page'link"
-          containerClassName="pagination"
-          activeClassName="active"
-        />
       </div>
     );
   }

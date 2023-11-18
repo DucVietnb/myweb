@@ -55,7 +55,7 @@ class Login extends Component {
   // login
   redirectToAdminPage = () => {
     const { navigate } = this.props;
-    const redirectPath = "/system/user-manage";
+    const redirectPath = "/system/order-checking";
     navigate(`${redirectPath}`);
   };
   redirectToCustomerPage = () => {

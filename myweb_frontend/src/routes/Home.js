@@ -8,7 +8,7 @@ class Home extends Component {
     console.log({ isLoggedIn, dataUser });
     let linkToRedirect = isLoggedIn
       ? +dataUser?.roleId === 0
-        ? "/system/user-manage"
+        ? "/system/order-checking"
         : "/home"
       : "/login";
     console.log("this.props:", this.props);

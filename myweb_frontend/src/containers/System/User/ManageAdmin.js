@@ -1,17 +1,18 @@
 import React, { Component } from "react";
-import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
-
-class OrderChecked extends Component {
+import * as actions from "../../../store/actions";
+// import "./ManageAdmin.scss";
+import "react-image-lightbox/style.css";
+class ManageAdmin extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
-  componentDidMount() {}
+  async componentDidMount() {}
   componentDidUpdate(prevProps, prevState, snapshot) {}
 
   render() {
-    return <div className="manage-product__container">hehe</div>;
+    return <div className="customer__container">quan ly cus</div>;
   }
 }
 
@@ -23,4 +24,4 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(OrderChecked);
+export default connect(mapStateToProps, mapDispatchToProps)(ManageAdmin);

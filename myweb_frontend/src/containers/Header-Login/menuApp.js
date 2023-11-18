@@ -7,13 +7,21 @@ export const adminMenu = [
         name: "menu.system.system-administrator.user-manage",
         link: "/system/user-manage",
       },
+      // {
+      //   name: "Quản lý khách hàng",
+      //   link: "/system/customer-manage",
+      // },
+      // {
+      //   name: "Quản lý quản trị viên",
+      //   link: "/system/admin-manage",
+      // },
     ],
   },
   {
     name: "Quản lý sản phẩm",
     menus: [
       {
-        name: "Quản lý sản phẩm",
+        name: "Thêm/xóa sản phẩm",
         link: "/system/product-manage",
       },
       {
@@ -30,8 +38,16 @@ export const adminMenu = [
         link: "/system/order-checking",
       },
       {
-        name: "Đơn hàng đã xác nhận",
-        link: "/system/order-checked",
+        name: "Đơn hàng chờ giao",
+        link: "/system/order-confirm",
+      },
+      {
+        name: "Đơn hàng đã hoàn thành",
+        link: "/system/order-done",
+      },
+      {
+        name: "Đơn hàng yêu cầu hủy",
+        link: "/system/order-req-cancel",
       },
       {
         name: "Đơn hàng đã hủy",

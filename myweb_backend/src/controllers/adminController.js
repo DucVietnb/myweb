@@ -11,4 +11,60 @@ let getOrderChecking = async (req, res) => {
     });
   }
 };
-module.exports = { getOrderChecking: getOrderChecking };
+
+let getOrderStatus = async (req, res) => {
+  try {
+    let order = await adminService.getOrderStatusService(req.query.id);
+    return res.status(200).json(order);
+  } catch (e) {
+    console.log(e);
+    return res.status(200).json({
+      errCode: -1,
+      errMessage: "Can not get order from server ...",
+    });
+  }
+};
+
+let orderDelete = async (req, res) => {
+  if (!req.body.id) {
+    return res.status(200).json({
+      errCode: 1,
+      errMessage: "Missing required parameters!",
+    });
+  } else {
+    let message = await adminService.orderDeleteService(req.body.id);
+    return res.status(200).json(message);
+  }
+};
+
+let orderUpdate = async (req, res) => {
+  let data = req.body;
+  if (!data.id) {
+    return res.status(200).json({
+      errCode: 1,
+      errMessage: "Missing required parameters!",
+    });
+  } else {
+    let message = await adminService.orderUpdateService(data);
+    return res.status(200).json(message);
+  }
+};
+let orderUpdateStatus = async (req, res) => {
+  let data = req.body;
+  if (!data.id) {
+    return res.status(200).json({
+      errCode: 1,
+      errMessage: "Missing required parameters!",
+    });
+  } else {
+    let message = await adminService.orderUpdateStatusService(data);
+    return res.status(200).json(message);
+  }
+};
+module.exports = {
+  getOrderChecking: getOrderChecking,
+  orderDelete: orderDelete,
+  orderUpdate: orderUpdate,
+  orderUpdateStatus: orderUpdateStatus,
+  getOrderStatus: getOrderStatus,
+};

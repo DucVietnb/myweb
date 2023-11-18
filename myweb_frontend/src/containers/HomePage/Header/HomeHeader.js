@@ -20,6 +20,11 @@ class HomeHeader extends Component {
   getLogin = () => {
     this.props.history.push(`/login`);
   };
+  getSignUp = () => {
+    setTimeout(() => {
+      this.props.navigate(`/signup`);
+    }, 100);
+  };
   getNews = () => {
     this.props.history.push(`/news`);
   };
@@ -44,10 +49,15 @@ class HomeHeader extends Component {
       this.props.navigate("/account");
     }, 100);
   };
+  goAdminPage = () => {
+    const { navigate } = this.props;
+    const redirectPath = "/system/order-checking";
+    navigate(`${redirectPath}`);
+  };
   render() {
     let language = this.props.language;
     let { isLoggedIn, processLogout, userInfo } = this.props;
-    // console.log("check prop in home header", this.props);
+    console.log("check prop in home header", userInfo);
     return (
       <React.Fragment>
         <div className="header__container">
@@ -88,6 +98,9 @@ class HomeHeader extends Component {
                         >
                           Đăng nhập
                         </li>
+                        <li className="button" onClick={() => this.getSignUp()}>
+                          Đăng ký
+                        </li>
                       </ul>
                     </div>
                   </div>
@@ -106,6 +119,16 @@ class HomeHeader extends Component {
                           <i className="fas fa-folder-open"></i>
                           <span>Quản lý tài khoản</span>
                         </li>
+                        {userInfo.roleId === "0" && (
+                          <li
+                            className="button"
+                            onClick={() => this.goAdminPage()}
+                          >
+                            <i className="fas fa-folder-open"></i>
+                            <span>Trang quản trị viên</span>
+                          </li>
+                        )}
+
                         <li
                           className="button"
                           onClick={() => this.handleLogout()}

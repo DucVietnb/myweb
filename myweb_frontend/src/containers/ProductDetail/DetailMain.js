@@ -43,7 +43,8 @@ class DetailMain extends Component {
       <>
         <div className="detail-main__container">
           <div className="main-title">
-            {product.type} {product.name}
+            {/*check=====*/}
+            {product.type} {product.brand} {product.name}
           </div>
           <div className="main-brand">Hãng: {product.type}</div>
           <div className="price">
@@ -66,7 +67,7 @@ class DetailMain extends Component {
             >
               Mua Ngay
             </button>
-            <button className="btn add-cart">Thêm vào giỏ hàng</button>
+            {/* <button className="btn add-cart">Thêm vào giỏ hàng</button> */}
             <button className="btn call">
               Gọi tư vấn <span>0123456789</span> ( 24/7 )
             </button>

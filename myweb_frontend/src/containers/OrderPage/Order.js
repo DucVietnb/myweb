@@ -306,7 +306,7 @@ class Order extends Component {
             </div>
 
             <button className="btn" onClick={this.handleCreateOrder}>
-              Thanh toán
+              Đặt hàng
             </button>
           </div>
         </div>

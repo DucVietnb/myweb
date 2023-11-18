@@ -10,6 +10,7 @@ const handleLoginApi = (email, password, action) => {
 };
 
 const getAllUsers = (id) => {
+  console.log("check id in service", id);
   return axios.get(`/api/get-all-users?id=${id}`);
 };
 

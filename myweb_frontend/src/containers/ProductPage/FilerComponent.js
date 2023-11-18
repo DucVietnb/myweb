@@ -49,7 +49,7 @@ class FilerComponent extends Component {
             ""
           )}
         </div>
-        <div className="tv-resolution ">
+        {/* <div className="tv-resolution ">
           {tvOption && tvOption.length > 0 ? (
             <>
               <div className="title_filter">Độ phân giải Tivi</div>
@@ -100,7 +100,7 @@ class FilerComponent extends Component {
           ) : (
             ""
           )}
-        </div>
+        </div> */}
       </div>
     );
   }

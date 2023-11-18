@@ -287,7 +287,7 @@ let orderCancelService = (data) => {
       });
 
       if (order) {
-        order.status = "Request cancel";
+        order.status = "Yêu cầu hủy";
         order.note = data.note;
         await order.save();
         resolve({

@@ -2,11 +2,15 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Redirect, Route, Switch } from "react-router-dom";
 import UserManage from "../containers/System/UserManage";
+
 import Header from "../containers/Header-Login/Header";
 import UpdateProduct from "../containers/System/Product/UpdateProduct";
 import ManageProduct from "../containers/System/Product/ManageProduct";
-import OrderChecked from "../containers/System/Order/OrderChecked";
 import OrderChecking from "../containers/System/Order/OrderChecking";
+import OrderConfirm from "../containers/System/Order/OrderConfirm";
+import OrderDone from "../containers/System/Order/OrderDone";
+import OrderRequestCancel from "../containers/System/Order/OrderRequestCancel";
+import OrderCanceled from "../containers/System/Order/OrderCanceled";
 class System extends Component {
   render() {
     const { systemMenuPath, isLoggedIn } = this.props;
@@ -25,7 +29,13 @@ class System extends Component {
 
               <Route path="/system/product-update" component={UpdateProduct} />
               <Route path="/system/order-checking" component={OrderChecking} />
-              <Route path="/system/order-checked" component={OrderChecked} />
+              <Route path="/system/order-confirm" component={OrderConfirm} />
+              <Route path="/system/order-done" component={OrderDone} />
+              <Route
+                path="/system/order-req-cancel"
+                component={OrderRequestCancel}
+              />
+              <Route path="/system/order-canceled" component={OrderCanceled} />
 
               <Route
                 component={() => {
