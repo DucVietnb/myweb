@@ -1,8 +1,22 @@
 import bcrypt from "bcryptjs";
 import db from "../models/index";
 import { query } from "express";
-require("dotenv").config();
 
+require("dotenv").config();
+const quickSort = (array, prop) => {
+  if (array.length <= 1) return array;
+  const pivot = array[0][prop];
+  const left = [];
+  const right = [];
+  for (let i = 1; i < array.length; i++) {
+    if (array[i][prop] > pivot) {
+      left.push(array[i]);
+    } else {
+      right.push(array[i]);
+    }
+  }
+  return [...quickSort(left, prop), array[0], ...quickSort(right, prop)];
+};
 let checkExistProduct = (productName) => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -73,6 +87,18 @@ let productGetAllService = () => {
   });
 };
 
+let productGetSearchService = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let products = await db.Product.findAll({
+        attributes: ["id", "name", "type", "brand"],
+      });
+      resolve(products);
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
 let updateProductService = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -93,7 +119,7 @@ let updateProductService = (data) => {
         product.isNew = data.isNew;
         product.countInStock = data.countInStock;
         product.countSold = data.countSold;
-        product.avatar = data.avatar;
+        // product.avatar = data.avatar;
         product.content = data.content;
         product.contentHTML = data.contentHTML;
         product.description = data.description;
@@ -164,30 +190,146 @@ let getProductByIdService = (id) => {
   });
 };
 
-//test
-// let productGetAllPagiService = (page) => {
-//   return new Promise(async (resolve, reject) => {
-//     try {
-//       const queries = { raw: true, nest: true };
-//       const offset = +page && +page > 1 ? +page - 1 : 0;
-//       queries.offset = +offset * +process.env.LIMIT_TAKE;
-//       queries.limit = +process.env.LIMIT_TAKE;
-//       let products = await db.Product.findAndCountAll({
-//         where: query,
-//         // order: [["createdAt", "DESC"]],
-//         ...queries,
-//       });
-//       resolve(products);
-//     } catch (e) {
-//       reject(e);
-//     }
-//   });
-// };
+let productGetAllTypeService = (type) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (!type) {
+        resolve({
+          errCode: 1,
+          errMessage: "Missing required parameter!",
+        });
+      } else {
+        let products = await db.Product.findAll({
+          where: { type: type },
+          order: [["updatedAt", "DESC"]],
+        });
+        if (!products) products = {};
+        resolve({
+          errCode: 0,
+          products: products,
+        });
+      }
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+let productGetAllBrandService = (brand) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (!brand) {
+        resolve({
+          errCode: 1,
+          errMessage: "Missing required parameter!",
+        });
+      } else {
+        let products = await db.Product.findAll({
+          where: { brand: brand },
+          order: [["updatedAt", "DESC"]],
+        });
+        if (!products) products = {};
+        resolve({
+          errCode: 0,
+          products: products,
+        });
+      }
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+let productNewService = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let products = await db.Product.findAll({
+        where: { isNew: true },
+        order: [["updatedAt", "DESC"]],
+      });
+      if (!products) products = {};
+      resolve({
+        errCode: 0,
+        products: products,
+      });
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+let productBoughtService = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let products = await db.Product.findAll({
+        where: { isBoughtMany: true },
+        order: [["updatedAt", "DESC"]],
+      });
+      if (!products) products = {};
+      resolve({
+        errCode: 0,
+        products: products,
+      });
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+let productHotService = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let products = await db.Product.findAll({
+        where: { isHot: true },
+        order: [["updatedAt", "DESC"]],
+      });
+      if (!products) products = {};
+      resolve({
+        errCode: 0,
+        products: products,
+      });
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+let productPrimeService = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let products = await db.Product.findAll({});
+      if (!products) {
+        resolve({
+          errCode: 0,
+          products: {},
+        });
+      } else {
+        let check = [];
+        products.map((item) => {
+          item.truePrice = +item.truePrice;
+          check.push(item);
+        });
+        let products_sort = quickSort(check, "truePrice");
+        let products_sort_limit = [];
+        for (let i = 0; i < 10; i++) {
+          products_sort_limit.push(products_sort[i]);
+        }
+        resolve({
+          errCode: 0,
+          products: products_sort_limit,
+        });
+      }
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
 module.exports = {
   productCreateService: productCreateService,
   productGetAllService: productGetAllService,
   updateProductService: updateProductService,
   productDeleteService: productDeleteService,
   getProductByIdService: getProductByIdService,
-  // productGetAllPagiService: productGetAllPagiService,
+  productGetAllTypeService: productGetAllTypeService,
+  productNewService: productNewService,
+  productBoughtService: productBoughtService,
+  productHotService: productHotService,
+  productPrimeService: productPrimeService,
+  productGetAllBrandService: productGetAllBrandService,
+  productGetSearchService: productGetSearchService,
 };

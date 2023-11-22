@@ -46,9 +46,6 @@ class UserManage extends Component {
 
   async componentDidMount() {
     await this.getAllUsersFromReact();
-    // const localStorage_User = localStorage.getItem("");
-
-    //handle navigate
     this.handleNavigateUser();
   }
   getAllUsersFromReact = async () => {

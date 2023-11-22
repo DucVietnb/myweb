@@ -4,3 +4,4 @@ export * from "./adminActions";
 export * from "./productActions";
 export * from "./orderAction";
 export * from "./customerAction";
+import * from "./statisticsActions"

@@ -54,7 +54,6 @@ class ProductDetail extends Component {
       slidesToScroll: 1,
     };
     let { detailProduct } = this.state;
-    console.log("check detail", this.state);
     return (
       <>
         <Breadcrumb product={detailProduct} isDetail={true} />

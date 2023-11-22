@@ -12,6 +12,17 @@ export const path = {
   PRODUCT_TIVI: "/tivi",
   PRODUCT_FRIDGE: "/fridge",
   PRODUCT_WASHING: "/washing-machine",
+  PRODUCT_REFRESHER: "/refresher",
+  PRODUCT_HOT: "/product-hot",
+  PRODUCT_NEW: "/product-new",
+  PRODUCT_BOUGHT_MANY: "/product-bought-many",
+  PRODUCT_PRIME: "/product-prime",
+
+  PRODUCT_PANASONIC: "/product-panasonic",
+  PRODUCT_LG: "/product-lg",
+  PRODUCT_SONY: "/product-sony",
+  PRODUCT_SAMSUNG: "/product-samsung",
+
   CART: "/cart",
   ORDER: "/order",
   THANKS_ORDER: "/thanks-order/:id",

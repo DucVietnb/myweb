@@ -37,6 +37,11 @@ class TopSeller extends Component {
       this.props.history.push(`/product-detail/${product.id}`);
     }
   };
+  goBoughtMany = () => {
+    setTimeout(() => {
+      this.props.history.push(`/product-bought-many`);
+    }, 100);
+  };
   render() {
     let arrProducts = [];
     this.state.products.map((item, index) => {
@@ -51,7 +56,12 @@ class TopSeller extends Component {
             <div className="header__title pointer__event">
               TOP SẢN PHẨM BÁN CHẠY
             </div>
-            <div className="btn pointer__event">XEM TẤT CẢ ⮞</div>
+            <div
+              className="btn pointer__event"
+              onClick={() => this.goBoughtMany()}
+            >
+              XEM TẤT CẢ ⮞
+            </div>
           </div>
           <div className="section__body">
             <Slider {...this.props.setting}>

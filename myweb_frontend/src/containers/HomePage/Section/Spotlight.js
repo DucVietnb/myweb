@@ -2,45 +2,53 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import "./NoSlide.scss";
+import { withRouter } from "react-router";
 
 class Spotlight extends Component {
+  getPrime = () => {
+    setTimeout(() => {
+      this.props.history.push(`/product-prime`);
+    }, 100);
+  };
+  getTivi = () => {
+    setTimeout(() => {
+      this.props.history.push(`/tivi`);
+    }, 100);
+  };
   render() {
     return (
       <div className="section-spotlight">
         <div className="section-spotlight__container">
           <ul className="spotlight">
-            <li>
-              <a href="">
+            <li onClick={this.getPrime}>
+              <div className="spl">
                 <div className="spotlight__img prenium"></div>
                 <span>Hàng cao cấp</span>
-              </a>
+              </div>
             </li>
-            <li>
-              <a href="">
+            <li onClick={this.getTivi}>
+              <div className="spl">
                 <div className="spotlight__img tivi"></div>
-
                 <span>
                   Tivi trưng bày <br />
                   Giảm đến 60%
                 </span>
-              </a>
+              </div>
             </li>
-            <li>
-              <a href="">
+            <li onClick={this.getPrime}>
+              <div className="spl">
                 <div className="spotlight__img prenium"></div>
-
                 <span>Hàng cao cấp</span>
-              </a>
+              </div>
             </li>
-            <li>
-              <a href="">
+            <li onClick={this.getTivi}>
+              <div className="spl">
                 <div className="spotlight__img tivi"></div>
-
                 <span>
                   Tivi trưng bày <br />
                   Giảm đến 60%
                 </span>
-              </a>
+              </div>
             </li>
           </ul>
         </div>
@@ -60,4 +68,6 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Spotlight);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(Spotlight)
+);

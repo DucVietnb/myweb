@@ -3,18 +3,18 @@ export const adminMenu = [
     //hệ thống
     name: "Quản lý người dùng",
     menus: [
+      // {
+      //   name: "menu.system.system-administrator.user-manage",
+      //   link: "/system/user-manage",
+      // },
       {
-        name: "menu.system.system-administrator.user-manage",
-        link: "/system/user-manage",
+        name: "Quản lý khách hàng",
+        link: "/system/customer-manage",
       },
-      // {
-      //   name: "Quản lý khách hàng",
-      //   link: "/system/customer-manage",
-      // },
-      // {
-      //   name: "Quản lý quản trị viên",
-      //   link: "/system/admin-manage",
-      // },
+      {
+        name: "Quản lý quản trị viên",
+        link: "/system/admin-manage",
+      },
     ],
   },
   {
@@ -42,6 +42,14 @@ export const adminMenu = [
         link: "/system/order-confirm",
       },
       {
+        name: "Đơn hàng đang giao",
+        link: "/system/order-delivering",
+      },
+      {
+        name: "Chờ xác nhận hoàn thành",
+        link: "/system/order-checkdone",
+      },
+      {
         name: "Đơn hàng đã hoàn thành",
         link: "/system/order-done",
       },
@@ -52,6 +60,20 @@ export const adminMenu = [
       {
         name: "Đơn hàng đã hủy",
         link: "/system/order-canceled",
+      },
+    ],
+  },
+  {
+    //hệ thống
+    name: "Thống kê",
+    menus: [
+      // {
+      //   name: "menu.system.system-administrator.user-manage",
+      //   link: "/system/user-manage",
+      // },
+      {
+        name: "Thống kê số liệu",
+        link: "/system/statistics",
       },
     ],
   },

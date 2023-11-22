@@ -24,6 +24,8 @@ module.exports = (sequelize, DataTypes) => {
       gender: DataTypes.BOOLEAN,
       roleId: DataTypes.STRING,
       annotate: DataTypes.STRING,
+      totalMoney: DataTypes.STRING,
+      totalOrder: DataTypes.STRING,
     },
     {
       sequelize,

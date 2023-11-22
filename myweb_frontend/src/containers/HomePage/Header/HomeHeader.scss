@@ -60,13 +60,46 @@ html {
           color: #1447fe;
         }
       }
-      input {
-        height: 40px;
-        width: 370px;
-        border: none;
-        outline: none;
-        background: none;
-        font-size: 1.8rem;
+      // input {
+      //   height: 40px;
+      //   width: 370px;
+      //   border: none;
+      //   outline: none;
+      //   background: none;
+      //   font-size: 1.8rem;
+      // }
+      .search {
+        .select {
+          height: 40px;
+          width: 370px;
+          font-size: 1.4rem;
+        }
+        .css-yk16xz-control {
+          border-color: #ededed;
+          border: none;
+          .css-1okebmr-indicatorSeparator {
+            background-color: #fff;
+          }
+          .css-tlfecz-indicatorContainer {
+            color: #fff;
+          }
+        }
+        .css-1pahdxg-control {
+          border-color: #fff;
+          box-shadow: 0 0 0 1px #fff !important;
+          .css-1okebmr-indicatorSeparator {
+            background-color: #fff;
+          }
+          .css-tlfecz-indicatorContainer {
+            color: #fff;
+          }
+          .css-1gtu0rj-indicatorContainer {
+            color: #fff;
+          }
+        }
+        .css-1pahdxg-control:hover {
+          border-color: #fff !important;
+        }
       }
     }
     .header__info {

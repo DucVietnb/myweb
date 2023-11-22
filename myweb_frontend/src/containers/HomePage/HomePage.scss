@@ -54,7 +54,6 @@
     .section__body {
       .bg-img {
         &.big-promotion__img {
-          background-image: url("../../assets/images/category-slide/big-promotion.webp");
           margin: 40px 0;
         }
         // &.new-product__img {
@@ -63,11 +62,9 @@
         //   margin: 20px 0 !important;
         // }
         &.top-seller__img {
-          background-image: url("../../assets/images/category-slide/top-seller.webp");
           height: 180px !important;
         }
         &.top-search__img {
-          background-image: url("../../assets/images/category-slide/top-search.webp");
           height: 180px !important;
         }
       }

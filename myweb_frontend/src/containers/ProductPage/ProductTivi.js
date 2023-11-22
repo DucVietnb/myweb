@@ -12,7 +12,7 @@ class ProductTivi extends Component {
     };
   }
   componentDidMount() {
-    this.props.getAllProducts();
+    this.props.getProductByTypeStart("Tivi");
   }
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.products !== this.props.products) {
@@ -36,13 +36,7 @@ class ProductTivi extends Component {
     }
   };
   render() {
-    let arrProducts = [];
-    this.state.products.map((item, index) => {
-      if (item.type == "Tivi") {
-        arrProducts.push(item);
-      }
-    });
-    console.log("check tivi", arrProducts);
+    let arrProducts = this.state.products;
     return (
       <>
         <Breadcrumb
@@ -50,9 +44,6 @@ class ProductTivi extends Component {
         />
 
         <div className="product-page__container">
-          <div className="navbar">
-            <NavbarComponent />
-          </div>
           <div className="main-product">
             <div className="product__item">
               {arrProducts &&
@@ -79,9 +70,7 @@ class ProductTivi extends Component {
                         />
                         <div className="product__info">
                           <span className="hover__event--blue">
-                            {item.type}
-                            <br />
-                            {item.name}
+                            {item.type} {item.brand} {item.name}
                           </span>
                           <span className="price--real">
                             {this.formatCash(item.truePrice)}₫
@@ -116,7 +105,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getAllProducts: () => dispatch(actions.getAllProductsStart()),
+    getProductByTypeStart: (type) =>
+      dispatch(actions.getProductByTypeStart(type)),
   };
 };
 

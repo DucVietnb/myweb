@@ -53,10 +53,10 @@
         border-radius: 12px;
         padding: 0 5px;
         &.banner0__img {
-          background-image: url("../../../assets/images/slider/banner0.webp");
+          background-image: url("../../../assets/images/banner/tivi_banner.webp");
         }
         &.banner1__img {
-          background-image: url("../../../assets/images/slider/banner1.webp");
+          background-image: url("../../../assets/images/banner/tulanh_banner.webp");
         }
       }
     }
@@ -112,6 +112,12 @@
             &.tivi__img {
               background-image: url("../../../assets/images/Tivi.png");
             }
+            &.tulanh__img {
+              background-image: url("../../../assets/images/tulanh.jpg");
+            }
+            &.maygiat__img {
+              background-image: url("../../../assets/images/maygiat.jpg");
+            }
             &.air__img {
               background-image: url("../../../assets/images/May-lanh.png");
             }
@@ -150,8 +156,8 @@
         vertical-align: middle;
         border-radius: 12px;
         padding: 20px 0;
-
-        a {
+        cursor: pointer;
+        .spl {
           display: flex;
           justify-content: space-evenly;
           text-decoration: none;
@@ -197,13 +203,19 @@
         background-repeat: no-repeat;
         background-size: cover;
         background-color: transparent;
-        border-radius: 50%;
+        border-radius: 12px;
         padding: 0 5px;
         &.brand0__img {
           background-image: url("../../../assets/images/brands/samsunng.webp");
         }
         &.brand1__img {
           background-image: url("../../../assets/images/brands/sony.webp");
+        }
+        &.brand2__img {
+          background-image: url("../../../assets/images/brands/lg.png");
+        }
+        &.brand3__img {
+          background-image: url("../../../assets/images/brands/panasonic.png");
         }
       }
     }

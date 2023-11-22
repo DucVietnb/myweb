@@ -114,7 +114,6 @@ let orderCancel = async (req, res) => {
 let getOrderByUserId = async (req, res) => {
   try {
     let order = await orderService.getOrderByUserIdService(req.query.id);
-    console.log("check order ", typeof order);
     return res.status(200).json(order);
   } catch (e) {
     console.log(e);

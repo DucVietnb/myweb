@@ -38,6 +38,9 @@ class NewProduct extends Component {
       this.props.history.push(`/product-detail/${product.id}`);
     }
   };
+  goNew = () => {
+    this.props.history.push(`/product-new`);
+  };
   render() {
     // let arrProducts = this.state.products;
     let arrProducts = [];
@@ -51,7 +54,9 @@ class NewProduct extends Component {
         <div className="section__container new-product__container">
           <div className="section__header">
             <div className="header__title pointer__event">SẢN PHẨM MỚI</div>
-            <div className="btn pointer__event">XEM TẤT CẢ ⮞</div>
+            <div className="btn pointer__event" onClick={() => this.goNew()}>
+              XEM TẤT CẢ ⮞
+            </div>
           </div>
           <div className="section__body">
             <Slider {...this.props.setting}>
@@ -87,11 +92,17 @@ class NewProduct extends Component {
                             {item.name}
                           </span>
                           <span className="price--real">
-                            {this.formatCash(item.truePrice)}₫
+                            {this.formatCash(
+                              item.truePrice ? item.truePrice : "0"
+                            )}
+                            ₫
                           </span>
                           <div className="price--sale">
                             <span className="price--begin">
-                              {this.formatCash(item.initPrice)}₫
+                              {this.formatCash(
+                                item.initPrice ? item.initPrice : "0"
+                              )}
+                              ₫
                             </span>
                             <span className="price--percent">
                               - {item.percent}%

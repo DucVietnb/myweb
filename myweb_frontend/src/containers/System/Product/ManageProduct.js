@@ -11,7 +11,6 @@ import * as actions from "../../../store/actions";
 import { CommonUtils } from "../../../utils";
 import CreateProduct from "./CreateProduct";
 const mdParser = new MarkdownIt(/* Markdown-it options */);
-
 class ManageProduct extends Component {
   constructor(props) {
     super(props);
@@ -31,7 +30,6 @@ class ManageProduct extends Component {
     }
   }
   // Finish!
-
   //img
   handleDeleteProduct = (product) => {
     this.props.deleteProductStart(product.id);

@@ -7,7 +7,7 @@
     height: 100%;
   }
   .main-product {
-    flex-basis: 80%;
+    flex-basis: 100%;
   }
 }
 
@@ -19,14 +19,15 @@
   .outline__body {
     background-color: transparent;
     margin: 0 -5px;
-    width: 25%;
-    // border: 1px solid red;
+    width: 20%;
     padding: 0 5px;
     .body__cus {
       background-color: #fff;
       margin: 5px;
       padding-top: 30px;
       border-radius: 12px;
+      min-height: 380px;
+
       //   border: 1px solid green;
       box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.10196078431372549),
         0 2px 6px 2px rgba(60, 64, 67, 0.14901960784313725);
@@ -38,7 +39,6 @@
         background-size: contain;
         padding: 5px;
         &.new-product__img {
-          background-image: url("../../assets/images/category-slide/big-promotion.webp");
           height: 160px !important;
           margin: 20px 0 !important;
         }

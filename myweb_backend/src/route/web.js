@@ -5,6 +5,7 @@ import customerController from "../controllers/customerController";
 import productController from "../controllers/productController";
 import orderController from "../controllers/orderController";
 import adminController from "../controllers/adminController";
+import statisticsController from "../controllers/statisticsController";
 // import {protectToken} from
 
 let router = express.Router();
@@ -34,12 +35,32 @@ let initWebRoutes = (app) => {
 
   //router customer
   router.post("/api/sign-up", customerController.handleSignup);
+
+  // admin
+  router.get("/api/get-all-customers", adminController.customerGetAll);
+  router.get("/api/get-all-admins", adminController.adminGetAll);
+  router.post(
+    "/api/update-customer-extra",
+    adminController.updateCustomerExtra
+  );
+
   //router product
   router.post("/api/product-create", productController.productCreate);
   router.get("/api/get-all-products", productController.productGetAll);
+  router.get("/api/get-products-search", productController.productGetSearch);
+
   router.post("/api/update-product", productController.productUpdate);
   router.delete("/api/delete-product", productController.productDelete);
   router.get("/api/get-product-by-id", productController.getProductById);
+  router.get("/api/get-all-products-type", productController.productGetAllType);
+  router.get("/api/get-all-products-new", productController.productNew);
+  router.get("/api/get-all-products-bought", productController.productBought);
+  router.get("/api/get-all-products-hot", productController.productHot);
+  router.get("/api/get-all-products-prime", productController.productPrime);
+  router.get(
+    "/api/get-all-products-brand",
+    productController.productGetAllBrand
+  );
 
   // router.get("/api/get-all-products-pagi", productController.productGetAllPagi);
   //cart
@@ -65,7 +86,26 @@ let initWebRoutes = (app) => {
   router.delete("/api/order-delete", adminController.orderDelete);
   router.post("/api/update-order", adminController.orderUpdate);
   router.post("/api/update-order-status", adminController.orderUpdateStatus);
-
+  //statistics
+  router.get("/api/get-top-cus-money", statisticsController.getTopCusMoney);
+  router.get("/api/get-top-cus-order", statisticsController.getTopCusOrder);
+  router.get("/api/get-top-order-money", statisticsController.getTopOrderMoney);
+  router.get(
+    "/api/get-top-order-quantity",
+    statisticsController.getTopOrderQuantity
+  );
+  router.get(
+    "/api/get-top-product-sold",
+    statisticsController.getTopProductSold
+  );
+  router.get(
+    "/api/get-top-product-stock",
+    statisticsController.getTopProductStock
+  );
+  router.get(
+    "/api/get-top-product-sold-few",
+    statisticsController.getTopProductSoldFew
+  );
   return app.use("/", router);
 };
 

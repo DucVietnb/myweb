@@ -37,6 +37,9 @@ class BigPromotion extends Component {
       this.props.history.push(`/product-detail/${product.id}`);
     }
   };
+  goHot = () => {
+    this.props.history.push(`/product-hot`);
+  };
   render() {
     let arrProducts = [];
     this.state.products.map((item, index) => {
@@ -51,7 +54,9 @@ class BigPromotion extends Component {
             <div className="header__title pointer__event">
               TƯNG BỪNG KHUYẾN MẠI
             </div>
-            <div className="btn pointer__event">XEM TẤT CẢ ⮞</div>
+            <div className="btn pointer__event" onClick={() => this.goHot()}>
+              XEM TẤT CẢ ⮞
+            </div>
           </div>
           <div className="section__body">
             <Slider {...this.props.setting}>

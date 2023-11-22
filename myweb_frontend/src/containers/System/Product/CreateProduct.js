@@ -109,9 +109,9 @@ class CreateProduct extends Component {
   handleOnChangeImage = async (event) => {
     let data = event.target.files;
     let file = data[0];
+
     if (file) {
       let base64 = await CommonUtils.getBase64(file);
-
       let objecturl = URL.createObjectURL(file);
       this.setState({
         previewImgURL: objecturl,
@@ -123,6 +123,7 @@ class CreateProduct extends Component {
   //create
   handleCreateProduct = () => {
     let isValid = this.checkValidateInput();
+
     if (isValid === false) {
       return;
     } else {
@@ -168,8 +169,18 @@ class CreateProduct extends Component {
       ((this.state.initPrice - this.state.truePrice) / this.state.initPrice) *
         100
     );
-
-    console.log("check state in create, percent", this.state.percent);
+    let arrBrand = [
+      "Panasonic",
+      "SamSung",
+      "Sony",
+      "TLC",
+      "LG",
+      "Casper",
+      "Toshiba",
+      "Aqua",
+      "Mitsubishi",
+      "Comfee",
+    ];
     return (
       <div className="create-product__container">
         {/* <div className="title mb-3">Quản lý sản phẩm</div> */}
@@ -198,8 +209,7 @@ class CreateProduct extends Component {
                 <option>Tivi</option>
                 <option>Tủ lạnh</option>
                 <option>Máy giặt</option>
-                <option>Máy làm mát không khí</option>
-                <option>Máy hút bụi</option>
+                <option>Máy lạnh</option>
               </select>
             </div>
             <div className="col-3 form-group ">
@@ -211,9 +221,11 @@ class CreateProduct extends Component {
                   this.onChangeInput(event, "brand");
                 }}
               >
-                <option>Panasonic</option>
-                <option>TLC</option>
-                <option>LG</option>
+                {arrBrand &&
+                  arrBrand.length > 0 &&
+                  arrBrand.map((item) => {
+                    return <option>{item}</option>;
+                  })}
               </select>
             </div>
           </div>

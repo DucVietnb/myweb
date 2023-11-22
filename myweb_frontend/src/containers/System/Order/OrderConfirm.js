@@ -75,15 +75,14 @@ class OrderConfirm extends Component {
   handleDone = (id) => {
     this.props.orderUpdateStatusStart({
       id: id,
-      status: "Đã hoàn thành",
+      status: "Đơn đang giao",
     });
     setTimeout(() => {
       this.props.getOrderByStatusStart("Chờ giao hàng");
     }, 500);
   };
   render() {
-    console.log("check state in checking", this.state);
-    console.log("check props in checking", this.props);
+
     let { order } = this.state;
     return (
       <div className="checking__container">

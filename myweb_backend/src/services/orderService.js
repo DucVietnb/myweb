@@ -320,7 +320,7 @@ let getOrderByUserIdService = (id) => {
           include: [
             {
               model: db.Cart,
-              order: [["createdAt", "DESC"]],
+              order: [["updatedAt", "DESC"]],
               attributes: [
                 "productName",
                 "productType",

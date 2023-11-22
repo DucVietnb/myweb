@@ -11,7 +11,6 @@ class Breadcrumb extends Component {
     }
   };
   render() {
-    console.log("chekc break", this.props);
     return (
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">

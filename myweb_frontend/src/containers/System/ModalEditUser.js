@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import _ from 'lodash'
 
-class ModalEditUser extends Component {
+class ModalUpdateUser extends Component {
 
     constructor(props) {
         super(props);
@@ -123,7 +123,7 @@ class ModalEditUser extends Component {
                 className="px-2"
                 color="primary"
                 onClick={() => { this.handleEditUser() }}>
-                Save change
+                Lưu thay đổi
               </Button>{' '}
               <Button className = "px-2" color="secondary" onClick={() => { this.toggle() }}>
                 Cancel
@@ -145,4 +145,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModalEditUser);
+export default connect(mapStateToProps, mapDispatchToProps)(ModalUpdateUser);

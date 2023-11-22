@@ -7,8 +7,53 @@ import { changeLanguage } from "../../../store/actions";
 import { withRouter } from "react-router";
 import { push } from "connected-react-router";
 import * as actions from "../../../store/actions";
+import Select from "react-select";
+import { getProductById } from "../../../services/productService";
 
 class HomeHeader extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      products: [],
+      selectedOption: "",
+    };
+  }
+  componentDidMount() {
+    setTimeout(() => {
+      this.props.productGetSearchStart();
+    }, 200);
+  }
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.products !== this.props.products) {
+      let dataSelect = this.buildDataInputSelect(this.props.products);
+      this.setState({ products: dataSelect });
+    }
+  }
+
+  //search
+  handleChangeSelect = async (selectedOption, name) => {
+    this.setState({ selectedOption });
+    setTimeout(() => {
+      this.props.history.push(`/home`);
+    }, 10);
+
+    setTimeout(() => {
+      this.props.history.push(`/product-detail/${selectedOption.value}`);
+      this.setState({ selectedOption: "" });
+    }, 100);
+  };
+  buildDataInputSelect = (inputData) => {
+    let result = [];
+    if (inputData && inputData.length > 0) {
+      inputData.map((item, index) => {
+        let object = {};
+        object.label = item.type + " " + item.brand + " " + item.name;
+        object.value = item.id;
+        result.push(object);
+      });
+    }
+    return result;
+  };
   changeLanguage = (language) => {
     this.props.changeLanguage(language);
   };
@@ -38,6 +83,9 @@ class HomeHeader extends Component {
   getFridge = () => {
     this.props.navigate("/fridge");
   };
+  getRefresher = () => {
+    this.props.navigate("/refresher");
+  };
   getWashingMachine = () => {
     this.props.navigate("/washing-machine");
   };
@@ -54,10 +102,15 @@ class HomeHeader extends Component {
     const redirectPath = "/system/order-checking";
     navigate(`${redirectPath}`);
   };
+  goBoughtMany = () => {
+    setTimeout(() => {
+      this.props.history.push(`/product-bought-many`);
+    }, 100);
+  };
   render() {
     let language = this.props.language;
     let { isLoggedIn, processLogout, userInfo } = this.props;
-    console.log("check prop in home header", userInfo);
+
     return (
       <React.Fragment>
         <div className="header__container">
@@ -69,7 +122,18 @@ class HomeHeader extends Component {
               ></div>
             </div>
             <div className="header__search">
-              <input type="text" placeholder="Bạn tìm gì..." />
+              {/* <input type="text" placeholder="Bạn tìm gì..."> */}
+              <div className="search">
+                <Select
+                  className="select"
+                  placeholder="Bạn tìm gì..."
+                  value={this.state.selectedOption}
+                  onChange={this.handleChangeSelect}
+                  options={this.state.products}
+                />
+              </div>
+
+              {/* </input> */}
               <i className="fas fa-search pointer__event"></i>
             </div>
             <div className="header__info">
@@ -182,9 +246,13 @@ class HomeHeader extends Component {
                     <span>Máy giặt</span>
                     <i className="fas fa-chevron-right posi-left"></i>
                   </li>
-                  <li className="hover__event--bigger">
+                  <li
+                    className="hover__event--bigger"
+                    onClick={this.getRefresher}
+                  >
                     <i className="fas fa-leaf"></i>
                     <span>Điều hòa</span>
+
                     <i className="fas fa-chevron-right posi-left"></i>
                   </li>
                 </ul>
@@ -200,7 +268,10 @@ class HomeHeader extends Component {
                   <FormattedMessage id="header__menu.news" />
                 </div>
               </div>
-              <div className="options pointer__event hover__event--blue">
+              <div
+                className="options pointer__event hover__event--blue"
+                onClick={() => this.goBoughtMany()}
+              >
                 <i className="fas fa-percent"></i>
                 <div className="option_content option--hover hover__event--bigger">
                   <FormattedMessage id="header__menu.promotion" />
@@ -234,6 +305,7 @@ const mapStateToProps = (state) => {
     isLoggedIn: state.user.isLoggedIn,
     language: state.app.language,
     userInfo: state.user.userInfo,
+    products: state.product.products_search,
   };
 };
 
@@ -242,6 +314,7 @@ const mapDispatchToProps = (dispatch) => {
     changeLanguage: (language) => dispatch(changeLanguage(language)),
     processLogout: () => dispatch(actions.processLogout()),
     navigate: (path) => dispatch(push(path)),
+    productGetSearchStart: () => dispatch(actions.productGetSearchStart()),
   };
 };
 

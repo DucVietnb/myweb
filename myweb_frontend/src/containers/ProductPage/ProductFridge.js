@@ -14,7 +14,7 @@ class ProductFridge extends Component {
     };
   }
   componentDidMount() {
-    this.props.getAllProducts();
+    this.props.getProductByTypeStart("Tủ lạnh");
   }
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.products !== this.props.products) {
@@ -38,21 +38,14 @@ class ProductFridge extends Component {
     }
   };
   render() {
-    let arrProducts = [];
-    this.state.products.map((item, index) => {
-      if (item.type == "Tủ lạnh") {
-        arrProducts.push(item);
-      }
-    });
+    let arrProducts = this.state.products;
+
     return (
       <>
         <Breadcrumb
           product={arrProducts && arrProducts[0] ? arrProducts[0] : ""}
         />
         <div className="product-page__container">
-          <div className="navbar">
-            <NavbarComponent />
-          </div>
           <div className="main-product">
             <div className="product__item">
               {arrProducts &&
@@ -79,9 +72,7 @@ class ProductFridge extends Component {
                         />
                         <div className="product__info">
                           <span className="hover__event--blue">
-                            {item.type}
-                            <br />
-                            {item.name}
+                            {item.type} {item.brand} {item.name}
                           </span>
                           <span className="price--real">
                             {this.formatCash(item.truePrice)}₫
@@ -116,7 +107,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getAllProducts: () => dispatch(actions.getAllProductsStart()),
+    getProductByTypeStart: (type) =>
+      dispatch(actions.getProductByTypeStart(type)),
   };
 };
 

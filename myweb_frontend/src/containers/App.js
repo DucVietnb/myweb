@@ -37,7 +37,15 @@ import Account from "./User/Account.js";
 import ProductTivi from "./ProductPage/ProductTivi.js";
 import ProductFridge from "./ProductPage/ProductFridge.js";
 import ProductWashingMachine from "./ProductPage/ProductWashingMachine.js";
-
+import ProductRefresher from "./ProductPage/ProductRefresher.js";
+import ProductHot from "./ProductPage/ProductHot.js";
+import ProductBoughtMany from "./ProductPage/ProductBoughtMany.js";
+import ProductNew from "./ProductPage/ProductNew.js";
+import ProductPrime from "./ProductPage/ProductPrime.js";
+import ProductPanasonic from "./ProductPage/ProductBrand/ProductPanasonic.js";
+import ProductLg from "./ProductPage/ProductBrand/ProductLg.js";
+import ProductSony from "./ProductPage/ProductBrand/ProductSony.js";
+import ProductSamsung from "./ProductPage/ProductBrand/ProductSamsung.js";
 //order
 import Cart from "./OrderPage/Cart.js";
 import Order from "./OrderPage/Order.js";
@@ -84,14 +92,34 @@ class App extends Component {
                   <Route path={path.PRODUCT_TIVI} component={ProductTivi} />
                   <Route path={path.PRODUCT_FRIDGE} component={ProductFridge} />
                   <Route
+                    path={path.PRODUCT_REFRESHER}
+                    component={ProductRefresher}
+                  />
+                  <Route path={path.PRODUCT_HOT} component={ProductHot} />
+                  <Route path={path.PRODUCT_NEW} component={ProductNew} />
+                  <Route
+                    path={path.PRODUCT_BOUGHT_MANY}
+                    component={ProductBoughtMany}
+                  />
+                  <Route path={path.PRODUCT_PRIME} component={ProductPrime} />
+                  <Route
                     path={path.PRODUCT_WASHING}
                     component={ProductWashingMachine}
                   />
+                  <Route
+                    path={path.PRODUCT_PANASONIC}
+                    component={ProductPanasonic}
+                  />
+                  <Route
+                    path={path.PRODUCT_SAMSUNG}
+                    component={ProductSamsung}
+                  />{" "}
+                  <Route path={path.PRODUCT_SONY} component={ProductSony} />{" "}
+                  <Route path={path.PRODUCT_LG} component={ProductLg} />
                   <Route path={path.NEWS} component={News} />
                   <Route path={path.CART} component={Cart} />
                   <Route path={path.ORDER} component={Order} />
                   <Route path={path.THANKS_ORDER} component={OrderThanks} />
-
                   <Route path={path.NOPAGE} component={NotFoundPage} />
                 </Switch>
                 <HomeGeneral />

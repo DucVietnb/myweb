@@ -88,7 +88,6 @@ class ModalOrder extends Component {
   };
   render() {
     console.log("check state in modal", this.state);
-
     console.log("check pros in modal", this.props);
     let {
       order,
@@ -246,7 +245,7 @@ class ModalOrder extends Component {
               this.toggle();
             }}
           >
-            Cancel
+            Hủy
           </Button>
         </ModalFooter>
       </Modal>

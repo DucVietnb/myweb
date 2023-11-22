@@ -5,6 +5,13 @@ import {
   deleteProduct,
   createProductService,
   UpdateProduct,
+  getProductByType,
+  getproductNew,
+  getproductBought,
+  getproductHot,
+  productPrime,
+  getProductByBrand,
+  productGetSearch,
 } from "../../services/productService";
 //product
 //GET
@@ -29,6 +36,27 @@ export const getAllProductsStart = () => {
 };
 export const getAllProductsFail = () => ({
   type: actionTypes.GET_ALL_PRODUCTS_FAIL,
+});
+
+export const productGetSearchStart = () => {
+  return async (dispatch, getState) => {
+    let res = await productGetSearch();
+    if (res && res.errCode === 0) {
+      dispatch({
+        type: actionTypes.GET_PRODUCTS_SEARCH_SUCCESS,
+        products_search: res.products,
+      });
+    } else {
+      dispatch(productGetSearchFail());
+    }
+    try {
+    } catch (e) {
+      dispatch(productGetSearchFail());
+    }
+  };
+};
+export const productGetSearchFail = () => ({
+  type: actionTypes.GET_PRODUCTS_SEARCH_FAIL,
 });
 //DELETE
 export const deleteProductStart = (id) => {
@@ -100,4 +128,133 @@ export const updateProduct = (data) => {
 };
 export const updateProductFailed = () => ({
   type: actionTypes.UPDATE_PRODUCT_FAIL,
+});
+//get by type
+export const getProductByTypeStart = (type) => {
+  return async (dispatch, getState) => {
+    let res = await getProductByType(type);
+    if (res && res.errCode === 0) {
+      dispatch({
+        type: actionTypes.GET_PRODUCTS_BYTYPE_SUCCESS,
+        products: res.products,
+      });
+    } else {
+      dispatch(getProductByTypeFail());
+    }
+    try {
+    } catch (e) {
+      dispatch(getProductByTypeFail());
+    }
+  };
+};
+export const getProductByTypeFail = () => ({
+  type: actionTypes.GET_PRODUCTS_BYTYPE_FAIL,
+});
+
+export const getProductByBrandStart = (brand) => {
+  return async (dispatch, getState) => {
+    let res = await getProductByBrand(brand);
+    if (res && res.errCode === 0) {
+      dispatch({
+        type: actionTypes.GET_PRODUCTS_BY_BRAND_SUCCESS,
+        products: res.products,
+      });
+    } else {
+      dispatch(getProductByBrandFail());
+    }
+    try {
+    } catch (e) {
+      dispatch(getProductByBrandFail());
+    }
+  };
+};
+export const getProductByBrandFail = () => ({
+  type: actionTypes.GET_PRODUCTS_BY_BRAND_FAIL,
+});
+
+//GET STICKER
+export const getproductHotStart = () => {
+  return async (dispatch, getState) => {
+    let res = await getproductHot();
+    if (res && res.errCode === 0) {
+      dispatch({
+        type: actionTypes.GET_PRODUCTS_HOT_SUCCESS,
+        products_hot: res.products,
+      });
+    } else {
+      toast.error("Can not get products");
+      dispatch(getproductHotFail());
+    }
+    try {
+    } catch (e) {
+      toast.error("Can not get products");
+      dispatch(getproductHotFail());
+    }
+  };
+};
+export const getproductHotFail = () => ({
+  type: actionTypes.GET_PRODUCTS_HOT_FAIL,
+});
+
+export const getproductNewStart = () => {
+  return async (dispatch, getState) => {
+    let res = await getproductNew();
+    if (res && res.errCode === 0) {
+      dispatch({
+        type: actionTypes.GET_PRODUCTS_NEW_SUCCESS,
+        products_new: res.products,
+      });
+    } else {
+      dispatch(getproductNewFail());
+    }
+    try {
+    } catch (e) {
+      dispatch(getproductNewFail());
+    }
+  };
+};
+export const getproductNewFail = () => ({
+  type: actionTypes.GET_PRODUCTS_NEW_FAIL,
+});
+
+export const getproductBoughtStart = () => {
+  return async (dispatch, getState) => {
+    let res = await getproductBought();
+    if (res && res.errCode === 0) {
+      dispatch({
+        type: actionTypes.GET_PRODUCTS_BOUGHT_SUCCESS,
+        products_bought: res.products,
+      });
+    } else {
+      dispatch(getproductBoughtFail());
+    }
+    try {
+    } catch (e) {
+      dispatch(getproductBoughtFail());
+    }
+  };
+};
+export const getproductBoughtFail = () => ({
+  type: actionTypes.GET_PRODUCTS_BOUGHT_FAIL,
+});
+
+export const productPrimeStart = () => {
+  return async (dispatch, getState) => {
+    let res = await productPrime();
+    if (res && res.errCode === 0) {
+      dispatch({
+        type: actionTypes.GET_PRODUCTS_PRIME_SUCCESS,
+        products_prime: res.products,
+      });
+    } else {
+      dispatch(productPrimeFail());
+    }
+    try {
+    } catch (e) {
+      dispatch(productPrimeFail());
+    }
+  };
+};
+export const productPrimeFail = () => ({
+  type: actionTypes.GET_PRODUCTS_PRIME_FAIL,
 });

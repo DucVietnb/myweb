@@ -142,7 +142,6 @@ class UpdateProduct extends Component {
       "brand",
       "truePrice",
       "countInStock",
-      "avatar",
       "countSold",
     ];
     for (let i = 0; i < arrCheck.length; i++) {
@@ -207,6 +206,18 @@ class UpdateProduct extends Component {
       ((this.state.initPrice - this.state.truePrice) / this.state.initPrice) *
         100
     );
+    let arrBrand = [
+      "Panasonic",
+      "SamSung",
+      "Sony",
+      "TLC",
+      "LG",
+      "Casper",
+      "Toshiba",
+      "Aqua",
+      "Mitsubishi",
+      "Comfee",
+    ];
     return (
       <div className="create-product__container">
         <div className="title mb-3">Chỉnh sửa thông tin sản phẩm</div>
@@ -229,13 +240,10 @@ class UpdateProduct extends Component {
                   this.onChangeInput(event, "type");
                 }}
               >
-                {/* <option>Chọn loại mặt hàng...</option> */}
                 <option>Tivi</option>
                 <option>Tủ lạnh</option>
                 <option>Máy giặt</option>
-                <option>Máy làm mát không khí</option>
-                {/* <option>Nồi chiên không dầu</option> */}
-                <option>Máy hút bụi</option>
+                <option>Máy lạnh</option>
               </select>
             </div>
             <div className="col-3 form-group ">
@@ -247,9 +255,11 @@ class UpdateProduct extends Component {
                   this.onChangeInput(event, "brand");
                 }}
               >
-                <option>Panasonic</option>
-                <option>TLC</option>
-                <option>LG</option>
+                {arrBrand &&
+                  arrBrand.length > 0 &&
+                  arrBrand.map((item) => {
+                    return <option>{item}</option>;
+                  })}
               </select>
             </div>
           </div>

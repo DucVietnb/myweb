@@ -82,8 +82,7 @@ class OrderChecking extends Component {
     }, 500);
   };
   render() {
-    console.log("check state in checking", this.state);
-    console.log("check props in checking", this.props);
+
     let { order } = this.state;
     return (
       <div className="checking__container">

@@ -165,6 +165,7 @@ let updateUserData = (data) => {
         user.address = data.address;
         user.phoneNumber = data.phoneNumber;
         user.gender = data.gender;
+        user.roleId = data.roleId;
         await user.save();
         resolve({
           errCode: 0,
