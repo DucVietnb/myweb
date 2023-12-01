@@ -88,12 +88,8 @@ let initWebRoutes = (app) => {
   router.post("/api/update-order-status", adminController.orderUpdateStatus);
   //statistics
   router.get("/api/get-top-cus-money", statisticsController.getTopCusMoney);
-  router.get("/api/get-top-cus-order", statisticsController.getTopCusOrder);
   router.get("/api/get-top-order-money", statisticsController.getTopOrderMoney);
-  router.get(
-    "/api/get-top-order-quantity",
-    statisticsController.getTopOrderQuantity
-  );
+
   router.get(
     "/api/get-top-product-sold",
     statisticsController.getTopProductSold
@@ -106,6 +102,7 @@ let initWebRoutes = (app) => {
     "/api/get-top-product-sold-few",
     statisticsController.getTopProductSoldFew
   );
+  router.get("/api/get-oneyear", statisticsController.getOneYear);
   return app.use("/", router);
 };
 

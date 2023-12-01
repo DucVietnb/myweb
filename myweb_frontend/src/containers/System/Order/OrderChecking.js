@@ -36,7 +36,10 @@ class OrderChecking extends Component {
     return date.slice(8, 10) + "/" + date.slice(5, 7) + "/" + date.slice(0, 4);
   };
   handleDeleteOrder = (id) => {
-    this.props.deleteOrderStart(id);
+    this.props.orderUpdateStatusStart({
+      id: id,
+      status: "Đã hủy",
+    });
     setTimeout(() => {
       this.props.getOrderByStatusStart("Chờ xác nhận");
     }, 500);
@@ -82,7 +85,6 @@ class OrderChecking extends Component {
     }, 500);
   };
   render() {
-
     let { order } = this.state;
     return (
       <div className="checking__container">

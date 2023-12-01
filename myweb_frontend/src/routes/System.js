@@ -15,9 +15,35 @@ import OrderDone from "../containers/System/Order/OrderDone";
 import OrderRequestCancel from "../containers/System/Order/OrderRequestCancel";
 import OrderCanceled from "../containers/System/Order/OrderCanceled";
 import Statistics from "../containers/System/Statistics/Statistics";
+import StatisticBrand from "../containers/System/Statistics/StatisticBrand";
+import StatisticOrder from "../containers/System/Statistics/StatisticOrder";
+import StatisticProduct from "../containers/System/Statistics/StatisticProduct";
+import { push } from "connected-react-router";
+
 class System extends Component {
+  redirectToCustomerPage = () => {
+    const { navigate } = this.props;
+    const redirectPath = "/home";
+    navigate(`${redirectPath}`);
+  };
+  handleNavigateUser = () => {
+    const { isLoggedIn, dataUser } = this.props;
+    const { navigate } = this.props;
+    if (isLoggedIn) {
+      if (+dataUser?.roleId === 1) {
+        this.redirectToCustomerPage();
+      }
+    } else {
+      navigate(`/login`);
+    }
+  };
+  async componentDidMount() {
+    this.handleNavigateUser();
+  }
   render() {
     const { systemMenuPath, isLoggedIn } = this.props;
+    console.log(this.props);
+
     return (
       <React.Fragment>
         {isLoggedIn && <Header />}
@@ -31,10 +57,6 @@ class System extends Component {
               />
               <Route path="/system/admin-manage" component={ManageAdmin} />
 
-              {/* <Route
-                path="/system/product-manage-create"
-                component={CreateProduct}
-              /> */}
               <Route path="/system/product-manage" component={ManageProduct} />
 
               <Route path="/system/product-update" component={UpdateProduct} />
@@ -56,6 +78,18 @@ class System extends Component {
               />
               <Route path="/system/order-canceled" component={OrderCanceled} />
               <Route path="/system/statistics" component={Statistics} />
+              <Route
+                path="/system/statistic-typebrand"
+                component={StatisticBrand}
+              />
+              <Route
+                path="/system/statistic-order"
+                component={StatisticOrder}
+              />
+              <Route
+                path="/system/statistic-product"
+                component={StatisticProduct}
+              />
 
               <Route
                 component={() => {
@@ -79,7 +113,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return { navigate: (path) => dispatch(push(path)) };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(System);

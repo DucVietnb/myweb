@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
+import { changeLanguage } from "../../../store/actions";
 import "./NoSlide.scss";
 import { withRouter } from "react-router";
 
@@ -15,6 +16,9 @@ class Spotlight extends Component {
       this.props.history.push(`/tivi`);
     }, 100);
   };
+  changeLanguage = (language) => {
+    this.props.changeLanguage(language);
+  };
   render() {
     return (
       <div className="section-spotlight">
@@ -23,30 +27,36 @@ class Spotlight extends Component {
             <li onClick={this.getPrime}>
               <div className="spl">
                 <div className="spotlight__img prenium"></div>
-                <span>Hàng cao cấp</span>
+                <span>
+                  <FormattedMessage id="home__page.premium" />
+                </span>
               </div>
             </li>
             <li onClick={this.getTivi}>
               <div className="spl">
                 <div className="spotlight__img tivi"></div>
                 <span>
-                  Tivi trưng bày <br />
-                  Giảm đến 60%
+                  <FormattedMessage id="home__page.tivi" />
+                  <br />
+                  <FormattedMessage id="home__page.upto" />
                 </span>
               </div>
             </li>
             <li onClick={this.getPrime}>
               <div className="spl">
                 <div className="spotlight__img prenium"></div>
-                <span>Hàng cao cấp</span>
+                <span>
+                  <FormattedMessage id="home__page.premium" />
+                </span>
               </div>
             </li>
             <li onClick={this.getTivi}>
               <div className="spl">
                 <div className="spotlight__img tivi"></div>
                 <span>
-                  Tivi trưng bày <br />
-                  Giảm đến 60%
+                  <FormattedMessage id="home__page.tivi" />
+                  <br />
+                  <FormattedMessage id="home__page.upto" />
                 </span>
               </div>
             </li>
@@ -65,7 +75,9 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    changeLanguage: (language) => dispatch(changeLanguage(language)),
+  };
 };
 
 export default withRouter(

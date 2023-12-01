@@ -45,6 +45,8 @@ class ProductRefresher extends Component {
 
         <div className="product-page__container">
           <div className="main-product">
+            <div className="title">Sản phẩm máy lạnh</div>
+
             <div className="product__item">
               {arrProducts &&
                 arrProducts.length > 0 &&

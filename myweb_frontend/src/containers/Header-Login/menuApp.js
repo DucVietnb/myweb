@@ -3,10 +3,6 @@ export const adminMenu = [
     //hệ thống
     name: "Quản lý người dùng",
     menus: [
-      // {
-      //   name: "menu.system.system-administrator.user-manage",
-      //   link: "/system/user-manage",
-      // },
       {
         name: "Quản lý khách hàng",
         link: "/system/customer-manage",
@@ -71,9 +67,15 @@ export const adminMenu = [
       //   name: "menu.system.system-administrator.user-manage",
       //   link: "/system/user-manage",
       // },
+
       {
-        name: "Thống kê số liệu",
-        link: "/system/statistics",
+        name: "Thống kê sản phẩm",
+        link: "/system/statistic-product",
+      },
+
+      {
+        name: "Thống kê đơn hàng",
+        link: "/system/statistic-order",
       },
     ],
   },

@@ -229,15 +229,20 @@ class ModalOrder extends Component {
           </div>
         </ModalBody>
         <ModalFooter>
-          <Button
-            className="px-2"
-            color="primary"
-            onClick={() => {
-              this.handleEditOrder();
-            }}
-          >
-            Save change
-          </Button>{" "}
+          {this.state.order.status === "Đã hoàn thành" ? (
+            ""
+          ) : (
+            <Button
+              className="px-2"
+              color="primary"
+              onClick={() => {
+                this.handleEditOrder();
+              }}
+            >
+              Save change
+            </Button>
+          )}
+
           <Button
             className="px-2"
             color="secondary"

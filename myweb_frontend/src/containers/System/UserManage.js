@@ -29,12 +29,9 @@ class UserManage extends Component {
     const redirectPath = "/home";
     navigate(`${redirectPath}`);
   };
-
   handleNavigateUser = () => {
     const { isLoggedIn, dataUser } = this.props;
-    console.log(isLoggedIn, dataUser);
     const { navigate } = this.props;
-
     if (isLoggedIn) {
       if (+dataUser?.roleId === 1) {
         this.redirectToCustomerPage();

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
-
+import { FormattedMessage } from "react-intl";
+import { changeLanguage } from "../../store/actions";
 import * as actions from "../../store/actions";
 import "./Account.scss";
 import { withRouter } from "react-router";
@@ -62,13 +63,18 @@ class EditInfo extends Component {
       gender: this.state.gender,
     });
   };
+  changeLanguage = (language) => {
+    this.props.changeLanguage(language);
+  };
   render() {
     console.log("check state cusorder", this.state);
     console.log("check props cusorder", typeof this.props);
     let { email, gender, fullName, phoneNumber, address } = this.state;
     return (
       <div className="info__container">
-        <div className="info__title">Thông tin tài khoản</div>
+        <div className="info__title">
+          <FormattedMessage id="header__navbar.account_info" />
+        </div>
         <div className="info__body">
           <div className="body__input">
             <div className="name">Email</div>
@@ -83,7 +89,9 @@ class EditInfo extends Component {
             />
           </div>
           <div className="body__input">
-            <div className="name">Họ và tên</div>
+            <div className="name">
+              <FormattedMessage id="login.fullname" />
+            </div>
             <input
               className="form-control"
               type="text"
@@ -94,7 +102,9 @@ class EditInfo extends Component {
             />
           </div>
           <div className="body__input">
-            <div className="name">Số điện thoại</div>
+            <div className="name">
+              <FormattedMessage id="login.phone" />
+            </div>
             <input
               className="form-control"
               type="number"
@@ -105,7 +115,9 @@ class EditInfo extends Component {
             />
           </div>
           <div className="body__input">
-            <div className="name">Giới tính</div>
+            <div className="name">
+              <FormattedMessage id="login.gender" />
+            </div>
             <select
               className="form-control"
               onChange={(event) => {
@@ -113,13 +125,15 @@ class EditInfo extends Component {
               }}
               value={gender}
             >
-              <option value="1">Male</option>
-              <option value="0">Female</option>
+              <option value="1">Nam</option>
+              <option value="0">Nữ</option>
             </select>
           </div>
 
           <div className="body__input">
-            <div className="name">Địa chỉ</div>
+            <div className="name">
+              <FormattedMessage id="login.address" />
+            </div>
             <input
               className="form-control"
               type="text"
@@ -131,7 +145,7 @@ class EditInfo extends Component {
           </div>
           <div className="body__input">
             <button className="btn" onClick={() => this.handleSaveUser()}>
-              Xác nhận
+              <FormattedMessage id="common.confirm" />
             </button>
           </div>
         </div>
@@ -153,6 +167,7 @@ const mapDispatchToProps = (dispatch) => {
     navigate: (path) => dispatch(push(path)),
     GetUserByIdStart: (id) => dispatch(actions.GetUserByIdStart(id)),
     editUser: (data) => dispatch(actions.editUser(data)),
+    changeLanguage: (language) => dispatch(changeLanguage(language)),
   };
 };
 

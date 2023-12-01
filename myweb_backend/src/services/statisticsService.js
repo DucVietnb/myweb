@@ -1,4 +1,12 @@
+import { or } from "sequelize";
 import db from "../models/index";
+const moment = require("moment");
+const Sequelize = require("sequelize");
+const op = Sequelize.Op;
+const operatorsAliases = {
+  $eq: op.eq,
+  $or: op.or,
+};
 const quickSort = (array, prop) => {
   if (array.length <= 1) return array;
   const pivot = array[0][prop];
@@ -55,43 +63,32 @@ let getTopCusMoneyService = () => {
     }
   });
 };
-let getTopCusOrderService = () => {
-  return new Promise(async (resolve, reject) => {
-    try {
-      let customer = await db.user.findAll({
-        where: { roleId: "1" },
-        attributes: {
-          exclude: ["password"],
-        },
-      });
-      let customer_sort = {};
-      if (!customer) {
-        customer_sort = {};
-      } else {
-        let check = [];
-        customer.map((item) => {
-          item.totalOrder = +item.totalOrder;
-          check.push(item);
-        });
-        customer_sort = getLimit(quickSort(check, "totalOrder"));
-      }
-
-      resolve({
-        errCode: 0,
-        customer: customer_sort,
-      });
-    } catch (e) {
-      reject(e);
-    }
-  });
-};
 
 //order
+
 let getTopOrderMoneyService = () => {
   return new Promise(async (resolve, reject) => {
     try {
       let order = await db.Order.findAll({
         where: { status: "Đã hoàn thành" },
+        attributes: [
+          "id",
+          "totalQuantity",
+          "totalPrice",
+          "shipAddress",
+          "cusName",
+          "cusPhoneNumber",
+          "updatedAt",
+        ],
+        include: [
+          {
+            model: db.Cart,
+            order: [["updatedAt", "DESC"]],
+            attributes: ["productName", "productType", "quantity"],
+          },
+        ],
+        raw: false,
+        nest: true,
       });
       let order_sort = {};
       if (!order) {
@@ -102,34 +99,7 @@ let getTopOrderMoneyService = () => {
           item.totalPrice = +item.totalPrice;
           check.push(item);
         });
-        order_sort = getLimit(quickSort(check, "totalPrice"));
-      }
-
-      resolve({
-        errCode: 0,
-        order: order_sort,
-      });
-    } catch (e) {
-      reject(e);
-    }
-  });
-};
-let getTopOrderQuantityService = () => {
-  return new Promise(async (resolve, reject) => {
-    try {
-      let order = await db.Order.findAll({
-        where: { status: "Đã hoàn thành" },
-      });
-      let order_sort = {};
-      if (!order) {
-        order_sort = {};
-      } else {
-        let check = [];
-        order.map((item) => {
-          item.totalQuantity = +item.totalQuantity;
-          check.push(item);
-        });
-        order_sort = getLimit(quickSort(check, "totalQuantity"));
+        order_sort = getLimit(quickSort(check, "totalPrice"), 7);
       }
 
       resolve({
@@ -149,11 +119,12 @@ let getTopProductSoldService = () => {
       let products = await db.Product.findAll({
         order: [["countSold", "DESC"]],
         attributes: [
-          "id",
           "name",
           "type",
           "brand",
+          "initPrice",
           "truePrice",
+          "percent",
           "countInStock",
           "countSold",
         ],
@@ -162,7 +133,7 @@ let getTopProductSoldService = () => {
       if (!products) {
         product_sort = {};
       } else {
-        product_sort = getLimit(products);
+        product_sort = getLimit(products, 7);
       }
       resolve({
         errCode: 0,
@@ -179,11 +150,12 @@ let getTopProductStockService = () => {
       let products = await db.Product.findAll({
         order: [["countInStock", "DESC"]],
         attributes: [
-          "id",
           "name",
           "type",
           "brand",
+          "initPrice",
           "truePrice",
+          "percent",
           "countInStock",
           "countSold",
         ],
@@ -192,7 +164,7 @@ let getTopProductStockService = () => {
       if (!products) {
         product_sort = {};
       } else {
-        product_sort = getLimit(products, 10);
+        product_sort = getLimit(products, 7);
       }
       resolve({
         errCode: 0,
@@ -209,11 +181,12 @@ let getTopProductSoldFewService = () => {
       let products = await db.Product.findAll({
         order: [["countSold", "ASC"]],
         attributes: [
-          "id",
           "name",
           "type",
           "brand",
+          "initPrice",
           "truePrice",
+          "percent",
           "countInStock",
           "countSold",
         ],
@@ -222,7 +195,7 @@ let getTopProductSoldFewService = () => {
       if (!products) {
         product_sort = {};
       } else {
-        product_sort = getLimit(products);
+        product_sort = getLimit(products, 7);
       }
       resolve({
         errCode: 0,
@@ -233,12 +206,66 @@ let getTopProductSoldFewService = () => {
     }
   });
 };
+
+let getOrderByMonth = (order) => {
+  let statisticsOrder = [];
+  for (let i = 1; i <= 12; i++) {
+    let orderArr = [];
+    order.map((item) => {
+      if (
+        item.updatedAt.toISOString().slice(5, 7) ===
+        (i < 10 ? "0" + i.toString() : i.toString())
+      ) {
+        orderArr.push(item);
+      }
+    });
+    let orderAfterCaCu = caculatorOrder(orderArr);
+    statisticsOrder.push({
+      month: i < 10 ? "0" + i.toString() : i.toString(),
+      totalMoney: orderAfterCaCu.totalMoney,
+      totalOrder: orderAfterCaCu.totalOrder,
+    });
+  }
+  return statisticsOrder;
+};
+let caculatorOrder = (orderArr) => {
+  let totalMoney = 0,
+    totalOrder = orderArr.length;
+  orderArr.map((item) => {
+    totalMoney = totalMoney + +item.totalPrice;
+  });
+  return { totalMoney, totalOrder };
+};
+let getOneYearService = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let order = await db.Order.findAll({
+        where: { status: "Đã hoàn thành" },
+        attributes: [
+          "id",
+          "totalQuantity",
+          "totalPrice",
+          "shipAddress",
+          "cusName",
+          "cusPhoneNumber",
+          "updatedAt",
+        ],
+      });
+      let statisticsOrder = getOrderByMonth(order);
+      resolve({
+        errCode: 0,
+        statisticsOrder: statisticsOrder,
+      });
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
 module.exports = {
   getTopCusMoneyService: getTopCusMoneyService,
-  getTopCusOrderService: getTopCusOrderService,
   getTopOrderMoneyService: getTopOrderMoneyService,
-  getTopOrderQuantityService: getTopOrderQuantityService,
   getTopProductSoldService: getTopProductSoldService,
   getTopProductStockService: getTopProductStockService,
   getTopProductSoldFewService: getTopProductSoldFewService,
+  getOneYearService: getOneYearService,
 };

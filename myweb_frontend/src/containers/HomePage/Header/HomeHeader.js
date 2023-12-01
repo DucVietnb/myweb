@@ -102,11 +102,12 @@ class HomeHeader extends Component {
     const redirectPath = "/system/order-checking";
     navigate(`${redirectPath}`);
   };
-  goBoughtMany = () => {
+  goHot = () => {
     setTimeout(() => {
-      this.props.history.push(`/product-bought-many`);
+      this.props.history.push(`/product-hot`);
     }, 100);
   };
+
   render() {
     let language = this.props.language;
     let { isLoggedIn, processLogout, userInfo } = this.props;
@@ -126,7 +127,7 @@ class HomeHeader extends Component {
               <div className="search">
                 <Select
                   className="select"
-                  placeholder="Bạn tìm gì..."
+                  placeholder=<FormattedMessage id="header__navbar.search" />
                   value={this.state.selectedOption}
                   onChange={this.handleChangeSelect}
                   options={this.state.products}
@@ -154,16 +155,16 @@ class HomeHeader extends Component {
                     <div className="user__menu">
                       <ul>
                         <li className="welcome">
-                          Xin chào, vui lòng đăng nhập
+                          <FormattedMessage id="header__navbar.pleaselogin" />
                         </li>
                         <li
                           className="button"
                           onClick={() => this.handleLogout()}
                         >
-                          Đăng nhập
+                          <FormattedMessage id="header__navbar.login" />
                         </li>
                         <li className="button" onClick={() => this.getSignUp()}>
-                          Đăng ký
+                          <FormattedMessage id="header__navbar.register" />
                         </li>
                       </ul>
                     </div>
@@ -175,13 +176,15 @@ class HomeHeader extends Component {
                     <div className="user__menu">
                       <ul>
                         <li className="welcome">
-                          Xin chào,
+                          <FormattedMessage id="header__navbar.hello" />
                           {userInfo.fullName}
                         </li>
 
                         <li className="button" onClick={() => this.goAccount()}>
                           <i className="fas fa-folder-open"></i>
-                          <span>Quản lý tài khoản</span>
+                          <span>
+                            <FormattedMessage id="header__navbar.manage-account" />
+                          </span>
                         </li>
                         {userInfo.roleId === "0" && (
                           <li
@@ -189,7 +192,9 @@ class HomeHeader extends Component {
                             onClick={() => this.goAdminPage()}
                           >
                             <i className="fas fa-folder-open"></i>
-                            <span>Trang quản trị viên</span>
+                            <span>
+                              <FormattedMessage id="header__navbar.admin-page" />
+                            </span>
                           </li>
                         )}
 
@@ -198,7 +203,9 @@ class HomeHeader extends Component {
                           onClick={() => this.handleLogout()}
                         >
                           <i className="fas fa-sign-out-alt"></i>
-                          <span>Đăng xuất</span>
+                          <span>
+                            <FormattedMessage id="header__navbar.logout" />
+                          </span>
                         </li>
                       </ul>
                     </div>
@@ -230,12 +237,16 @@ class HomeHeader extends Component {
                 <ul>
                   <li className="hover__event--bigger" onClick={this.getTivi}>
                     <i className="fas fa-tv"></i>
-                    <span>Tivi</span>
+                    <span>
+                      <FormattedMessage id="body.tivi" />
+                    </span>
                     <i className="fas fa-chevron-right posi-left"></i>
                   </li>
                   <li className="hover__event--bigger" onClick={this.getFridge}>
                     <i className="fas fa-snowflake"></i>
-                    <span>Tủ lạnh</span>
+                    <span>
+                      <FormattedMessage id="body.fridge" />
+                    </span>
                     <i className="fas fa-chevron-right posi-left"></i>
                   </li>
                   <li
@@ -243,7 +254,9 @@ class HomeHeader extends Component {
                     onClick={this.getWashingMachine}
                   >
                     <i className="fas fa-tint"></i>
-                    <span>Máy giặt</span>
+                    <span>
+                      <FormattedMessage id="body.washingmachine" />
+                    </span>
                     <i className="fas fa-chevron-right posi-left"></i>
                   </li>
                   <li
@@ -251,7 +264,9 @@ class HomeHeader extends Component {
                     onClick={this.getRefresher}
                   >
                     <i className="fas fa-leaf"></i>
-                    <span>Điều hòa</span>
+                    <span>
+                      <FormattedMessage id="body.refresher" />
+                    </span>
 
                     <i className="fas fa-chevron-right posi-left"></i>
                   </li>
@@ -270,7 +285,7 @@ class HomeHeader extends Component {
               </div>
               <div
                 className="options pointer__event hover__event--blue"
-                onClick={() => this.goBoughtMany()}
+                onClick={() => this.goHot()}
               >
                 <i className="fas fa-percent"></i>
                 <div className="option_content option--hover hover__event--bigger">
@@ -292,9 +307,6 @@ class HomeHeader extends Component {
             </div>
           </div>
         </div>
-        {/* <div className="banner__container">
-          <div className="first__banner"></div>
-        </div> */}
       </React.Fragment>
     );
   }

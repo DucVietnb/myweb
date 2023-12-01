@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
+import { changeLanguage } from "../../../store/actions";
 import * as actions from "../../../store/actions";
 import { withRouter } from "react-router";
+
 //import Slider
 import Slider from "react-slick";
 
@@ -42,6 +44,9 @@ class TopSeller extends Component {
       this.props.history.push(`/product-bought-many`);
     }, 100);
   };
+  changeLanguage = (language) => {
+    this.props.changeLanguage(language);
+  };
   render() {
     let arrProducts = [];
     this.state.products.map((item, index) => {
@@ -49,18 +54,19 @@ class TopSeller extends Component {
         arrProducts.push(item);
       }
     });
+
     return (
       <div className="section__share">
         <div className="section__container top-seller__container">
           <div className="section__header">
             <div className="header__title pointer__event">
-              TOP SẢN PHẨM BÁN CHẠY
+              <FormattedMessage id="home__page.topseller" />
             </div>
             <div
               className="btn pointer__event"
               onClick={() => this.goBoughtMany()}
             >
-              XEM TẤT CẢ ⮞
+              <FormattedMessage id="home__page.viewmore" />
             </div>
           </div>
           <div className="section__body">
@@ -92,7 +98,7 @@ class TopSeller extends Component {
                             <span>Top bán chạy !!!</span>
                           </p>
                           <span className="hover__event--blue">
-                            {item.type}
+                            {item.type} {item.brand}
                             <br />
                             {item.name}
                           </span>
@@ -131,6 +137,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getAllProducts: () => dispatch(actions.getAllProductsStart()),
+    changeLanguage: (language) => dispatch(changeLanguage(language)),
   };
 };
 

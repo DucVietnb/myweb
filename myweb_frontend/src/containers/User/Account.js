@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
-
+import { FormattedMessage } from "react-intl";
+import { changeLanguage } from "../../store/actions";
 import * as actions from "../../store/actions";
 import "./Account.scss";
 import { withRouter } from "react-router";
@@ -29,17 +30,20 @@ class Account extends Component {
       this.setState({ isInfo: status });
     }
   };
+  changeLanguage = (language) => {
+    this.props.changeLanguage(language);
+  };
   render() {
     console.log("check state account", this.state);
     console.log("check props account", this.props);
     let user = this.props.userInfo;
     let { isInfo } = this.state;
-    // let { isInfo } = this.props.location;
-
     console.log("===========check user", isInfo);
     return (
       <div className="account__container">
-        <div className="title">QUẢN LÝ TÀI KHOẢN</div>
+        <div className="title">
+          <FormattedMessage id="header__navbar.manage-account" />
+        </div>
 
         <div className="account__content">
           <div className="general-info">
@@ -51,23 +55,27 @@ class Account extends Component {
               <ul>
                 <li
                   className={isInfo === true ? "button active" : "button"}
-                  //   onClick={this.handleIsInfo(true)}
                   onClick={() => this.handleIsInfo(true)}
                 >
                   <i className="fas fa-user-edit"></i>
-                  <span>Thông tin tài khoản</span>
+                  <span>
+                    <FormattedMessage id="header__navbar.account_info" />
+                  </span>
                 </li>
                 <li
                   className={isInfo === false ? "button active" : "button"}
-                  //   onClick={this.handleIsInfo(false)}
                   onClick={() => this.handleIsInfo(false)}
                 >
                   <i className="fas fa-receipt"></i>
-                  <span>Thông tin đơn hàng</span>
+                  <span>
+                    <FormattedMessage id="header__navbar.order_info" />
+                  </span>
                 </li>
                 <li className="button" onClick={() => this.handleLogout()}>
                   <i className="fas fa-sign-out-alt"></i>
-                  <span>Đăng xuất</span>
+                  <span>
+                    <FormattedMessage id="header__navbar.logout" />
+                  </span>
                 </li>
               </ul>
             </div>
@@ -98,6 +106,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     navigate: (path) => dispatch(push(path)),
     processLogout: () => dispatch(actions.processLogout()),
+    changeLanguage: (language) => dispatch(changeLanguage(language)),
   };
 };
 

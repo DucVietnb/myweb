@@ -42,6 +42,7 @@ const getproductHot = () => {
 const productPrime = () => {
   return axios.get(`/api/get-all-products-prime`);
 };
+
 export {
   getAllProducts,
   deleteProduct,

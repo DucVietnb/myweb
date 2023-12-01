@@ -35,16 +35,12 @@ class ProductSamsung extends Component {
     }
   };
   render() {
-    console.log("check state", this.state);
-    console.log("check props", this.props);
-
     let arrProducts = this.state.products;
-
     return (
       <>
         <div className="product-page__container">
           <div className="main-product">
-            <div className="title">Sản phẩm mua nhiều</div>
+            <div className="title">Sản phẩm hãng Samsung</div>
 
             <div className="product__item">
               {arrProducts &&

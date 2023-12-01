@@ -13,35 +13,10 @@ let getTopCusMoney = async (req, res) => {
   }
 };
 
-let getTopCusOrder = async (req, res) => {
-  try {
-    let customer = await statisticsService.getTopCusOrderService();
-    return res.status(200).json(customer);
-  } catch (e) {
-    console.log(e);
-    return res.status(200).json({
-      errCode: -1,
-      errMessage: "Can not get from server ...",
-    });
-  }
-};
 //order
 let getTopOrderMoney = async (req, res) => {
   try {
     let order = await statisticsService.getTopOrderMoneyService();
-    return res.status(200).json(order);
-  } catch (e) {
-    console.log(e);
-    return res.status(200).json({
-      errCode: -1,
-      errMessage: "Can not get from server ...",
-    });
-  }
-};
-
-let getTopOrderQuantity = async (req, res) => {
-  try {
-    let order = await statisticsService.getTopOrderQuantityService();
     return res.status(200).json(order);
   } catch (e) {
     console.log(e);
@@ -89,12 +64,23 @@ let getTopProductSoldFew = async (req, res) => {
     });
   }
 };
+let getOneYear = async (req, res) => {
+  try {
+    let statisticsOrder = await statisticsService.getOneYearService();
+    return res.status(200).json(statisticsOrder);
+  } catch (e) {
+    console.log(e);
+    return res.status(200).json({
+      errCode: -1,
+      errMessage: "Can not get from server ...",
+    });
+  }
+};
 module.exports = {
   getTopCusMoney: getTopCusMoney,
-  getTopCusOrder: getTopCusOrder,
   getTopOrderMoney: getTopOrderMoney,
-  getTopOrderQuantity: getTopOrderQuantity,
   getTopProductSold: getTopProductSold,
   getTopProductStock: getTopProductStock,
   getTopProductSoldFew: getTopProductSoldFew,
+  getOneYear: getOneYear,
 };

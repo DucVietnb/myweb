@@ -1,50 +1,32 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
-import "./CusOrder.scss";
-
-import * as actions from "../../store/actions";
-// import "../Auth/CartItem.scss";
+import "./Statistics.scss";
+import * as actions from "../../../store/actions";
 import { withRouter } from "react-router";
 
-class CartItem extends Component {
+class ProductItem extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
   componentDidMount() {}
   componentDidUpdate(prevProps, prevState, snapshot) {}
-  formatCash = (number) => {
-    return number
-      .split("")
-      .reverse()
-      .reduce((prev, next, index) => {
-        return (index % 3 ? next : next + ",") + prev;
-      });
-  };
-
   render() {
     let cart = this.props.listCart;
 
     return (
-      <div className="list-cart__container">
+      <div className="list-product__container">
         {cart &&
           cart.length > 0 &&
           cart.map((item) => {
             return (
-              <div className="cart">
+              <div className="product">
                 <div className="product-info">
-                  <div className="name">
+                  <span className="name">
                     {item.productType} {item.productName}
-                  </div>
-                  <div className="quantity">x{item.quantity}</div>
-                </div>
-
-                <div className="price">
-                  {this.formatCash(
-                    item.totalPrice ? item.totalPrice.toString() : "0"
-                  )}
-                  ₫
+                  </span>
+                  <span className="quantity">x{item.quantity}</span>
                 </div>
               </div>
             );
@@ -65,11 +47,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     navigate: (path) => dispatch(push(path)),
-    getOrderByUserIdStart: (userId) =>
-      dispatch(actions.getOrderByUserIdStart(userId)),
   };
 };
 
 export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(CartItem)
+  connect(mapStateToProps, mapDispatchToProps)(ProductItem)
 );

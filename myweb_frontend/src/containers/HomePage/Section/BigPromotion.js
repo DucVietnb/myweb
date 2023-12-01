@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
+import { changeLanguage } from "../../../store/actions";
 import * as actions from "../../../store/actions";
 import { withRouter } from "react-router";
 //import Slider
@@ -40,6 +41,9 @@ class BigPromotion extends Component {
   goHot = () => {
     this.props.history.push(`/product-hot`);
   };
+  changeLanguage = (language) => {
+    this.props.changeLanguage(language);
+  };
   render() {
     let arrProducts = [];
     this.state.products.map((item, index) => {
@@ -52,10 +56,10 @@ class BigPromotion extends Component {
         <div className="section__container big-promotion__container">
           <div className="section__header">
             <div className="header__title pointer__event">
-              TƯNG BỪNG KHUYẾN MẠI
+              <FormattedMessage id="home__page.promotion" />
             </div>
             <div className="btn pointer__event" onClick={() => this.goHot()}>
-              XEM TẤT CẢ ⮞
+              <FormattedMessage id="home__page.viewmore" />
             </div>
           </div>
           <div className="section__body">
@@ -87,7 +91,7 @@ class BigPromotion extends Component {
                             <span>% Giá rẻ quá</span>
                           </p>
                           <span className="hover__event--blue">
-                            {item.type}
+                            {item.type} {item.brand}
                             <br />
                             {item.name}
                           </span>
@@ -126,6 +130,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getAllProducts: () => dispatch(actions.getAllProductsStart()),
+    changeLanguage: (language) => dispatch(changeLanguage(language)),
   };
 };
 

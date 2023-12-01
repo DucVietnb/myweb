@@ -46,6 +46,8 @@ class ProductFridge extends Component {
           product={arrProducts && arrProducts[0] ? arrProducts[0] : ""}
         />
         <div className="product-page__container">
+          <div className="title">Sản phẩm tủ lạnh</div>
+
           <div className="main-product">
             <div className="product__item">
               {arrProducts &&

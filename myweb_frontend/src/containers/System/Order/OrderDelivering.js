@@ -36,7 +36,10 @@ class OrderDelivering extends Component {
     return date.slice(8, 10) + "/" + date.slice(5, 7) + "/" + date.slice(0, 4);
   };
   handleDeleteOrder = (id) => {
-    this.props.deleteOrderStart(id);
+    this.props.orderUpdateStatusStart({
+      id: id,
+      status: "Đã hủy",
+    });
     setTimeout(() => {
       this.props.getOrderByStatusStart("Đơn đang giao");
     }, 500);
@@ -95,9 +98,7 @@ class OrderDelivering extends Component {
             doEditOrder={this.doEditOrder}
           />
         )}
-        <div className="title py-2">
-          Đơn hàng đang giao
-        </div>
+        <div className="title py-2">Đơn hàng đang giao</div>
         <div className="checking__body">
           <table id="OrderManage">
             <tr>

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
+import { changeLanguage } from "../../../store/actions";
 import * as actions from "../../../store/actions";
 import { withRouter } from "react-router";
 
@@ -41,6 +42,9 @@ class NewProduct extends Component {
   goNew = () => {
     this.props.history.push(`/product-new`);
   };
+  changeLanguage = (language) => {
+    this.props.changeLanguage(language);
+  };
   render() {
     // let arrProducts = this.state.products;
     let arrProducts = [];
@@ -53,9 +57,11 @@ class NewProduct extends Component {
       <div className="section__share">
         <div className="section__container new-product__container">
           <div className="section__header">
-            <div className="header__title pointer__event">SẢN PHẨM MỚI</div>
+            <div className="header__title pointer__event">
+              <FormattedMessage id="home__page.new" />
+            </div>
             <div className="btn pointer__event" onClick={() => this.goNew()}>
-              XEM TẤT CẢ ⮞
+              <FormattedMessage id="home__page.viewmore" />
             </div>
           </div>
           <div className="section__body">
@@ -87,7 +93,7 @@ class NewProduct extends Component {
                             <span>Sản phẩm mới 2023</span>
                           </p>
                           <span className="hover__event--blue">
-                            {item.type}
+                            {item.type} {item.brand}
                             <br />
                             {item.name}
                           </span>
@@ -132,6 +138,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getAllProducts: () => dispatch(actions.getAllProductsStart()),
+    changeLanguage: (language) => dispatch(changeLanguage(language)),
   };
 };
 
