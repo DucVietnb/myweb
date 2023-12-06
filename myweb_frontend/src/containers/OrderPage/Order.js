@@ -31,7 +31,7 @@ class Order extends Component {
 
       if (res && res.errCode === 0) {
         this.setState({
-          fullName: user.fullName,
+          fullName: user?.fullName,
           shipAddress: user.address,
           phoneNumber: user.phoneNumber,
         });

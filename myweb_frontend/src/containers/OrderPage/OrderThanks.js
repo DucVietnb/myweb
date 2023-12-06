@@ -109,9 +109,9 @@ class OrderThanks extends Component {
         </div>
         <div className="order-thanks__content">
           <div className="thanks--init">
-            Cảm ơn khách hàng <b>{cusName}</b> đã cho cửa hàng chúng tôi được
-            phục vụ. Trong 20 phút, nhân viên của chúng tôi sẽ{" "}
-            <b>gọi điện xác nhận đặt hàng</b> cho quý khách. <br />
+            Cảm ơn quý khách <b>{cusName}</b> đã đặt hàng tại cửa hàng. Trong 20
+            phút, nhân viên của chúng tôi sẽ <b>gọi điện xác nhận đặt hàng</b>{" "}
+            cho quý khách. <br />
             <span>Xin chân thành cảm ơn !</span>
           </div>
           <div className="order-detail">

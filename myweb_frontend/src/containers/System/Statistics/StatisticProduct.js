@@ -128,7 +128,7 @@ class StatisticProduct extends Component {
           </div>
         </div>
         <div className="statistic_table">
-          <div className="title mb-3">Top 7 sản phẩm còn nhiều</div>
+          <div className="title mb-3">Top 7 sản phẩm tồn kho nhiều nhất</div>
           <div className="table__body">
             <table id="TableManage">
               <tr>

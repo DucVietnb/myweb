@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../../store/actions";
 import "./Manage.scss";
+import { toast } from "react-toastify";
 
 import {
   deleteUserService,
@@ -45,9 +46,11 @@ class ManageCustomer extends Component {
       if (res) {
         setTimeout(() => {
           this.props.customerGetAllStart();
+          toast.success("Delete succeed!");
         }, 500);
       } else {
         alert(res.errMessage);
+        toast.success("Delete fail!");
       }
     } catch (e) {
       console.log(e);
@@ -105,7 +108,7 @@ class ManageCustomer extends Component {
               <th style={{ width: "250px" }}>Địa chỉ</th>
               <th style={{ width: "150px" }}>Số điện thoại</th>
               <th style={{ width: "200px" }}>Tổng số tiền mua hàng</th>
-              <th>Tổng số đơn đã mua</th>
+              <th>Số đơn đã mua</th>
               <th>Action</th>
             </tr>
             {customers &&

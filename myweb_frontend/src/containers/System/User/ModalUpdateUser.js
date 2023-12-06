@@ -26,7 +26,7 @@ class ModalEditUser extends Component {
       this.setState({
         id: user.id,
         email: user.email,
-        fullName: user.fullName,
+        fullName: user?.fullName,
         address: user.address,
         phoneNumber: user.phoneNumber,
         gender: user.gender,

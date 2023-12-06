@@ -172,12 +172,12 @@ class HomeHeader extends Component {
                 )}
                 {isLoggedIn === true && (
                   <div className="child__content">
-                    {userInfo.fullName}
+                    {userInfo?.fullName}
                     <div className="user__menu">
                       <ul>
                         <li className="welcome">
                           <FormattedMessage id="header__navbar.hello" />
-                          {userInfo.fullName}
+                          {userInfo?.fullName}
                         </li>
 
                         <li className="button" onClick={() => this.goAccount()}>
@@ -186,7 +186,7 @@ class HomeHeader extends Component {
                             <FormattedMessage id="header__navbar.manage-account" />
                           </span>
                         </li>
-                        {userInfo.roleId === "0" && (
+                        {userInfo?.roleId === "0" && (
                           <li
                             className="button"
                             onClick={() => this.goAdminPage()}

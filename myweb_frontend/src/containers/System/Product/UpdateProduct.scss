@@ -26,9 +26,13 @@
       }
     }
   }
-  button {
-    font-size: 14px;
-    padding: 0 10px;
+  .update__button {
+    display: flex;
+    justify-content: center;
+    button {
+      font-size: 18px;
+      padding: 0 10px;
+    }
   }
 }
 label {

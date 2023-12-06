@@ -34,15 +34,24 @@ class ManageProduct extends Component {
   handleDeleteProduct = (product) => {
     this.props.deleteProductStart(product.id);
   };
+  formatCash = (number) => {
+    return number
+      .split("")
+      .reverse()
+      .reduce((prev, next, index) => {
+        return (index % 3 ? next : next + ",") + prev;
+      });
+  };
   render() {
     console.log("check state in manage product", this.state.products);
     console.log("check props", this.props);
     let arrProduct = this.state.products;
     return (
       <div className="manage-product__container">
-        <div className="title mb-3">Quản lý sản phẩm</div>
+        <div className="title mb-3">Thêm sản phẩm</div>
         <CreateProduct products={this.props.products} />
         <div className="user-redux__body">
+          <div className="title mb-3">Bảng quản lý sản phẩm</div>
           <table id="TableManageUser">
             <tr>
               <th>Tên sản phẩm</th>
@@ -59,14 +68,13 @@ class ManageProduct extends Component {
                     <td>{item.name}</td>
                     <td>{item.type}</td>
                     <td>{item.brand}</td>
-                    <td>{item.truePrice}</td>
                     <td>
-                      {/* <button
-                        className="btn--edit"
-                        onClick={() => this.handleEditUser(item)}
-                      >
-                        <i className="fas fa-pencil-alt"></i>
-                      </button> */}
+                      {this.formatCash(
+                        item.truePrice ? item.truePrice.toString() : "0"
+                      )}
+                      ₫
+                    </td>
+                    <td>
                       <button
                         className="btn--delete"
                         onClick={() => this.handleDeleteProduct(item)}

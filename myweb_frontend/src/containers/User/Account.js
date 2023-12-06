@@ -49,7 +49,7 @@ class Account extends Component {
           <div className="general-info">
             <div className="name">
               <i className="fas fa-user-circle fa-3x"></i>
-              <div className="user-name">{user.fullName}</div>
+              <div className="user-name">{user?.fullName}</div>
             </div>
             <div className="user__menu">
               <ul>
@@ -82,11 +82,11 @@ class Account extends Component {
           </div>
           {isInfo === true ? (
             <div className="account__main">
-              <EditInfo userId={this.props.userInfo.id} />
+              <EditInfo userId={this.props.userInfo?.id} />
             </div>
           ) : (
             <div className="account__main">
-              <CusOrder userId={this.props.userInfo.id} />
+              <CusOrder userId={this.props.userInfo?.id} />
             </div>
           )}
         </div>

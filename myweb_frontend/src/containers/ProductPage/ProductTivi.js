@@ -46,7 +46,6 @@ class ProductTivi extends Component {
         <div className="product-page__container">
           <div className="main-product">
             <div className="title">Sản phẩm Tivi</div>
-
             <div className="product__item">
               {arrProducts &&
                 arrProducts.length > 0 &&

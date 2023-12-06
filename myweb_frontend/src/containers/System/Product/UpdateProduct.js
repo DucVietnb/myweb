@@ -155,8 +155,6 @@ class UpdateProduct extends Component {
   };
   //edit
   handleUpdateProduct = () => {
-    // let isValid = this.checkValidateInput();
-    // if (isValid === false) return;
     let imageBase64 = "";
     if (this.state.avatar) {
       imageBase64 = new Buffer(this.state.avatar, "base64").toString("binary");
@@ -182,6 +180,10 @@ class UpdateProduct extends Component {
       descriptionHTML: this.state.descriptionHTML,
       previewImgURL: imageBase64,
     });
+  };
+  handleDeleteProduct = (product) => {
+    // this.props.deleteProductStart(product.id);
+    console.log("check=======", this.state.selectedOption.value);
   };
   render() {
     console.log("check state in update product", this.state);
@@ -422,12 +424,15 @@ class UpdateProduct extends Component {
             value={description}
           />
         </div>
-        <button
-          className="btn btn-warning"
-          onClick={() => this.handleUpdateProduct()}
-        >
-          Xác nhận chỉnh sửa
-        </button>
+        <div className="update__button">
+          <button
+            className="btn btn-warning"
+            onClick={() => this.handleUpdateProduct()}
+          >
+            Xác nhận chỉnh sửa
+          </button>
+        </div>
+
         {this.state.isOpen === true && (
           <Lightbox
             mainSrc={this.state.previewImgURL}
@@ -450,6 +455,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getAllProducts: () => dispatch(actions.getAllProductsStart()),
     updateProduct: (data) => dispatch(actions.updateProduct(data)),
+    deleteProductStart: (id) => dispatch(actions.deleteProductStart(id)),
   };
 };
 

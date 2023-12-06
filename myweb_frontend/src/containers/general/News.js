@@ -27,7 +27,7 @@ class News extends Component {
           </a>
           <a
             target="_blank"
-            href="https://tietkiemnangluong.com.vn/tin-tuc/meo-huu-ich/t29414/goi-y-cach-lua-chon-va-su-dung-am-dun-nuoc-sieu-toc-tiet-kiem-dien.html#:~:text=Khi%20ch%E1%BB%8Dn%20mua%20%E1%BA%A5m%20%C4%91un,inox%20ho%E1%BA%B7c%20th%C3%A9p%20kh%C3%B4ng%20g%E1%BB%89."
+            href="https://dienmaythiennamhoa.vn/thay-gas-tu-lanh-het-bao-nhieu-tien-n628.html "
           >
             <div className="news__component">
               <div className="news__img tulanh"></div>
@@ -47,7 +47,7 @@ class News extends Component {
           </a>
           <a
             target="_blank"
-            href="https://dienmaythiennamhoa.vn/thay-gas-tu-lanh-het-bao-nhieu-tien-n628.html "
+            href="https://www.dienmayxanh.com/kinh-nghiem-hay/remote-bi-hong-lam-sao-de-mo-tivi-933044"
           >
             <div className="news__component">
               <div className="news__img tivi"></div>
