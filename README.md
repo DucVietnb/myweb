@@ -8,3 +8,39 @@ Dưới đây là giao diện một số chức năng website
 ![alt text](https://github.com/DucVietnb/myweb_img/blob/main/readme/register.png?raw=true)
 ![alt text](https://github.com/DucVietnb/myweb_img/blob/main/readme/login.png?raw=true)
 
+3. Trang chủ
+  ![alt text](https://github.com/DucVietnb/myweb_img/blob/main/readme/mainbanner.png?raw=true)
+![alt text](https://github.com/DucVietnb/myweb_img/blob/main/readme/home/new.png?raw=true)
+![alt text](https://github.com/DucVietnb/myweb_img/blob/main/readme/home/seller.png?raw=true)
+![alt text](https://github.com/DucVietnb/myweb_img/blob/main/readme/home/brand.png?raw=true)
+
+5. Thông tin chi tiết sản phẩm
+![alt text](https://github.com/DucVietnb/myweb_img/blob/main/readme/product_info0.png?raw=true)
+![alt text](https://github.com/DucVietnb/myweb_img/blob/main/readme/product_info1.png?raw=true)
+
+7. Sản phẩm nổi bật
+![alt text](https://github.com/DucVietnb/myweb_img/blob/main/readme/top_seller.png?raw=true)
+![alt text](https://github.com/DucVietnb/myweb_img/blob/main/readme/tivi.png?raw=true)
+
+9. Quản lý tài khoản
+![alt text](https://github.com/DucVietnb/myweb_img/blob/main/readme/cus_info.png?raw=true)
+
+11. Giỏ hàng
+![alt text](https://github.com/DucVietnb/myweb_img/blob/main/readme/cart.png?raw=true)
+
+13. Đặt hàng
+![alt text](https://github.com/DucVietnb/myweb_img/blob/main/readme/order.png?raw=true)
+![alt text](https://github.com/DucVietnb/myweb_img/blob/main/readme/order_success.png?raw=true)
+                      Đặt hàng thành công
+15. Admin quản lý khách hàng
+![alt text](https://github.com/DucVietnb/myweb_img/blob/main/readme/cus_manage.png?raw=true)
+
+17. Admin thêm, sửa, xóa sản phẩm
+![alt text](https://github.com/DucVietnb/myweb_img/blob/main/readme/product_edit.png?raw=true)
+![alt text](https://github.com/DucVietnb/myweb_img/blob/main/readme/product_edit1.png?raw=true)
+
+20. Thống kê
+![alt text](https://github.com/DucVietnb/myweb_img/blob/main/readme/product_statistic0.png?raw=true)
+![alt text](https://github.com/DucVietnb/myweb_img/blob/main/readme/order_money.png?raw=true)
+![alt text](https://github.com/DucVietnb/myweb_img/blob/main/readme/order_money_statistic.png?raw=true)
+![alt text](https://github.com/DucVietnb/myweb_img/blob/main/readme/order_quantity_statistic.png?raw=true)
