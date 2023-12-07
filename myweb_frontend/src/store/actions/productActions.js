@@ -12,6 +12,7 @@ import {
   productPrime,
   getProductByBrand,
   productGetSearch,
+  productgetPercent,
 } from "../../services/productService";
 //product
 //GET
@@ -257,4 +258,25 @@ export const productPrimeStart = () => {
 };
 export const productPrimeFail = () => ({
   type: actionTypes.GET_PRODUCTS_PRIME_FAIL,
+});
+
+export const productgetPercentStart = () => {
+  return async (dispatch, getState) => {
+    let res = await productgetPercent();
+    if (res && res.errCode === 0) {
+      dispatch({
+        type: actionTypes.GET_PRODUCTS_PERCENT_SUCCESS,
+        products_per: res.products,
+      });
+    } else {
+      dispatch(productgetPercentFail());
+    }
+    try {
+    } catch (e) {
+      dispatch(productgetPercentFail());
+    }
+  };
+};
+export const productgetPercentFail = () => ({
+  type: actionTypes.GET_PRODUCTS_PERCENT_FAIL,
 });

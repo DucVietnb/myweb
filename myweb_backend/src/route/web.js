@@ -61,7 +61,7 @@ let initWebRoutes = (app) => {
     "/api/get-all-products-brand",
     productController.productGetAllBrand
   );
-
+  router.get("/api/get-percent", productController.getPercent);
   // router.get("/api/get-all-products-pagi", productController.productGetAllPagi);
   //cart
   router.post("/api/cart-add", orderController.cartAdd);

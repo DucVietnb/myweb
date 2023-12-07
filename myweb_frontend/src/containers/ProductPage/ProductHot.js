@@ -11,7 +11,7 @@ class ProductHot extends Component {
     };
   }
   componentDidMount() {
-    this.props.getproductHotStart();
+    this.props.productgetPercentStart();
   }
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.products !== this.props.products) {
@@ -36,7 +36,6 @@ class ProductHot extends Component {
   };
   render() {
     let arrProducts = this.state.products;
-
     return (
       <>
         <div className="product-page__container">
@@ -71,11 +70,17 @@ class ProductHot extends Component {
                             {item.type} {item.brand} {item.name}
                           </span>
                           <span className="price--real">
-                            {this.formatCash(item.truePrice)}₫
+                            {this.formatCash(
+                              item.truePrice ? item.truePrice.toString() : "0"
+                            )}
+                            ₫
                           </span>
                           <div className="price--sale">
                             <span className="price--begin">
-                              {this.formatCash(item.initPrice)}₫
+                              {this.formatCash(
+                                item.initPrice ? item.initPrice.toString() : "0"
+                              )}
+                              ₫
                             </span>
                             <span className="price--percent">
                               - {item.percent}%
@@ -97,13 +102,13 @@ class ProductHot extends Component {
 const mapStateToProps = (state) => {
   return {
     isLoggedIn: state.user.isLoggedIn,
-    products: state.product.products_hot,
+    products: state.product.products_per,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getproductHotStart: () => dispatch(actions.getproductHotStart()),
+    productgetPercentStart: () => dispatch(actions.productgetPercentStart()),
   };
 };
 

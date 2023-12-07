@@ -11,7 +11,7 @@ class ProductSamsung extends Component {
     };
   }
   componentDidMount() {
-    this.props.getProductByBrandStart("Samsung");
+    this.props.getProductByBrandStart("Casper");
   }
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.products !== this.props.products) {
@@ -40,7 +40,7 @@ class ProductSamsung extends Component {
       <>
         <div className="product-page__container">
           <div className="main-product">
-            <div className="title">Sản phẩm hãng Samsung</div>
+            <div className="title">Sản phẩm hãng Casper</div>
 
             <div className="product__item">
               {arrProducts &&
@@ -70,11 +70,17 @@ class ProductSamsung extends Component {
                             {item.type} {item.brand} {item.name}
                           </span>
                           <span className="price--real">
-                            {this.formatCash(item.truePrice)}₫
+                            {this.formatCash(
+                              item.initPrice ? item.initPrice.toString() : "0"
+                            )}
+                            ₫
                           </span>
                           <div className="price--sale">
                             <span className="price--begin">
-                              {this.formatCash(item.initPrice)}₫
+                              {this.formatCash(
+                                item.initPrice ? item.initPrice.toString() : "0"
+                              )}
+                              ₫
                             </span>
                             <span className="price--percent">
                               - {item.percent}%

@@ -7,6 +7,7 @@ const initialState = {
   products_bought: [],
   products_prime: [],
   products_search: [],
+  products_per: [],
 };
 const productReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -87,6 +88,16 @@ const productReducer = (state = initialState, action) => {
       };
     case actionTypes.GET_PRODUCTS_BY_BRAND_FAIL:
       state.products = [];
+      return {
+        ...state,
+      };
+    case actionTypes.GET_PRODUCTS_PERCENT_SUCCESS:
+      state.products_per = action.products_per;
+      return {
+        ...state,
+      };
+    case actionTypes.GET_PRODUCTS_PERCENT_FAIL:
+      state.products_per = [];
       return {
         ...state,
       };

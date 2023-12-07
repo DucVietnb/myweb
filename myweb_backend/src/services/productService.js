@@ -319,6 +319,36 @@ let productPrimeService = () => {
     }
   });
 };
+let getPercentService = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let products = await db.Product.findAll({});
+      if (!products) {
+        resolve({
+          errCode: 0,
+          products: {},
+        });
+      } else {
+        let check = [];
+        products.map((item) => {
+          item.truePrice = +item.truePrice;
+          check.push(item);
+        });
+        let products_sort = quickSort(products, "percent");
+        let products_sort_limit = [];
+        for (let i = 0; i < 10; i++) {
+          products_sort_limit.push(products_sort[i]);
+        }
+        resolve({
+          errCode: 0,
+          products: products_sort_limit,
+        });
+      }
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
 module.exports = {
   productCreateService: productCreateService,
   productGetAllService: productGetAllService,
@@ -332,4 +362,5 @@ module.exports = {
   productPrimeService: productPrimeService,
   productGetAllBrandService: productGetAllBrandService,
   productGetSearchService: productGetSearchService,
+  getPercentService: getPercentService,
 };

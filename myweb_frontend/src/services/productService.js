@@ -42,7 +42,9 @@ const getproductHot = () => {
 const productPrime = () => {
   return axios.get(`/api/get-all-products-prime`);
 };
-
+const productgetPercent = () => {
+  return axios.get(`/api/get-percent`);
+};
 export {
   getAllProducts,
   deleteProduct,
@@ -56,4 +58,5 @@ export {
   productPrime,
   getProductByBrand,
   productGetSearch,
+  productgetPercent,
 };

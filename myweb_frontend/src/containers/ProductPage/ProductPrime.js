@@ -78,7 +78,10 @@ class ProductPrime extends Component {
                           </span>
                           <div className="price--sale">
                             <span className="price--begin">
-                              {this.formatCash(item.initPrice)}₫
+                              {this.formatCash(
+                                item.initPrice ? item.initPrice.toString() : "0"
+                              )}
+                              ₫
                             </span>
                             <span className="price--percent">
                               - {item.percent}%

@@ -206,7 +206,8 @@
         border-radius: 12px;
         padding: 0 5px;
         &.brand0__img {
-          background-image: url("../../../assets/images/brands/samsunng.webp");
+          background-size: contain;
+          background-image: url("../../../assets/images/brands/download.png");
         }
         &.brand1__img {
           background-image: url("../../../assets/images/brands/sony.webp");

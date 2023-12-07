@@ -146,6 +146,19 @@ let productGetAllBrand = async (req, res) => {
     });
   }
 };
+let getPercent = async (req, res) => {
+  try {
+    let products = await productService.getPercentService();
+    console.log(products);
+    return res.status(200).json(products);
+  } catch (e) {
+    console.log(e);
+    return res.status(200).json({
+      errCode: -1,
+      errMessage: "Can not get order from server ...",
+    });
+  }
+};
 module.exports = {
   productCreate: productCreate,
   productGetAll: productGetAll,
@@ -159,4 +172,5 @@ module.exports = {
   productPrime: productPrime,
   productGetAllBrand: productGetAllBrand,
   productGetSearch: productGetSearch,
+  getPercent: getPercent,
 };
