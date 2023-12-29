@@ -75,7 +75,7 @@ class ProductBoughtMany extends Component {
                           </span>
                           <span className="price--real">
                             {this.formatCash(
-                              item.initPrice ? item.initPrice.toString() : "0"
+                              item.truePrice ? item.truePrice.toString() : "0"
                             )}
                             ₫
                           </span>

@@ -111,7 +111,7 @@ class TopSeller extends Component {
                           <div className="price--sale">
                             <span className="price--begin">
                               {this.formatCash(
-                                item.initPrice ? item.initPrice.toString() : "0"
+                                item.truePrice ? item.truePrice.toString() : "0"
                               )}
                               ₫
                             </span>
